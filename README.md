@@ -1,0 +1,1 @@
+# automated-tests-with-java-playground
