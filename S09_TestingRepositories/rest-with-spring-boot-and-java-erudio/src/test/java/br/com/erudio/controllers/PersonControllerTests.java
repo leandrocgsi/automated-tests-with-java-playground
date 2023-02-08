@@ -45,11 +45,14 @@ public class PersonControllerTests {
     public void givenPersonObject_whenCreatePerson_thenReturnSavedPerson() throws Exception{
 
         // given - precondition or setup
-        Person person = Person.builder()
-                .firstName("Leandro")
-                .lastName("Costa")
-                .email("leandro@erudio.com.br")
-                .build();
+        Person person = new Person(
+        		1L,
+        		"Leandro",
+        		"Costa",
+        		"leandro@erudio.com.br",
+        		"Uberlândia - Minas Gerais - Brasil",
+        		"Male"
+    		);
         given(service.create(any(Person.class)))
                 .willAnswer((invocation)-> invocation.getArgument(0));
 
@@ -75,9 +78,23 @@ public class PersonControllerTests {
     public void givenListOfPersons_whenGetAllPersons_thenReturnPersonsList() throws Exception{
         // given - precondition or setup
         List<Person> listOfPersons = new ArrayList<>();
-        listOfPersons.add(Person.builder().firstName("Leandro").lastName("Costa").email("leandro@erudio.com.br").build());
-        listOfPersons.add(Person.builder().firstName("Tony").lastName("Stark").email("tony@gmail.com").build());
-        given(service.getAllPersons()).willReturn(listOfPersons);
+        listOfPersons.add(new Person(
+        		1L,
+        		"Leandro",
+        		"Costa",
+        		"leandro@erudio.com.br",
+        		"Uberlândia - Minas Gerais - Brasil",
+        		"Male"
+    		));
+        listOfPersons.add(new Person(
+        		2L,
+        		"Ayrton",
+        		"Senna",
+        		"sena@erudio.com.br",
+        		"Some Place in Brasil",
+        		"Male"
+        		));
+        given(service.findAll()).willReturn(listOfPersons);
 
         // when -  action or the behavior that we are going test
         ResultActions response = mockMvc.perform(get("/api/persons"));
@@ -96,11 +113,14 @@ public class PersonControllerTests {
     public void givenPersonId_whenGetPersonById_thenReturnPersonObject() throws Exception{
         // given - precondition or setup
         long personId = 1L;
-        Person person = Person.builder()
-                .firstName("Leandro")
-                .lastName("Costa")
-                .email("leandro@erudio.com.br")
-                .build();
+        var person = new Person(
+        		1L,
+        		"Leandro",
+        		"Costa",
+        		"leandro@erudio.com.br",
+        		"Uberlândia - Minas Gerais - Brasil",
+        		"Male"
+    		);
         given(service.findById(personId)).willReturn(Optional.of(person));
 
         // when -  action or the behavior that we are going test
@@ -121,11 +141,14 @@ public class PersonControllerTests {
     public void givenInvalidPersonId_whenGetPersonById_thenReturnEmpty() throws Exception{
         // given - precondition or setup
         long personId = 1L;
-        Person person = Person.builder()
-                .firstName("Leandro")
-                .lastName("Costa")
-                .email("leandro@erudio.com.br")
-                .build();
+        Person person = new Person(
+        		1L,
+        		"Leandro",
+        		"Costa",
+        		"leandro@erudio.com.br",
+        		"Uberlândia - Minas Gerais - Brasil",
+        		"Male"
+    		);
         given(service.findById(personId)).willReturn(Optional.empty());
 
         // when -  action or the behavior that we are going test
@@ -141,17 +164,23 @@ public class PersonControllerTests {
         public void givenUpdatedPerson_whenUpdatePerson_thenReturnUpdatePersonObject() throws Exception{
             // given - precondition or setup
             long personId = 1L;
-            Person savedPerson = Person.builder()
-                    .firstName("Leandro")
-                    .lastName("Costa")
-                    .email("leandro@erudio.com.br")
-                    .build();
+            Person savedPerson = new Person(
+            		1L,
+            		"Leandro",
+            		"Costa",
+            		"leandro@erudio.com.br",
+            		"Uberlândia - Minas Gerais - Brasil",
+            		"Male"
+        		);
 
-            Person updatedPerson = Person.builder()
-                    .firstName("Ayrton")
-                    .lastName("Senna")
-                    .email("senna@erudio.com.br")
-                    .build();
+            Person updatedPerson = new Person(
+            		2L,
+            		"Ayrton",
+            		"Senna",
+            		"sena@erudio.com.br",
+            		"Some Place in Brasil",
+            		"Male"
+        		);
             given(service.findById(personId)).willReturn(Optional.of(savedPerson));
             given(service.update(any(Person.class)))
                     .willAnswer((invocation)-> invocation.getArgument(0));
@@ -175,17 +204,23 @@ public class PersonControllerTests {
     public void givenUpdatedPerson_whenUpdatePerson_thenReturn404() throws Exception{
         // given - precondition or setup
         long personId = 1L;
-        Person savedPerson = Person.builder()
-                .firstName("Leandro")
-                .lastName("Costa")
-                .email("leandro@erudio.com.br")
-                .build();
+        Person savedPerson = new Person(
+        		1L,
+        		"Leandro",
+        		"Costa",
+        		"leandro@erudio.com.br",
+        		"Uberlândia - Minas Gerais - Brasil",
+        		"Male"
+    		);
 
-        Person updatedPerson = Person.builder()
-                .firstName("Ayrton")
-                .lastName("Senna")
-                .email("senna@erudio.com.br")
-                .build();
+        Person updatedPerson = new Person(
+        		2L,
+        		"Ayrton",
+        		"Senna",
+        		"sena@erudio.com.br",
+        		"Some Place in Brasil",
+        		"Male"
+    		);
         given(service.findById(personId)).willReturn(Optional.empty());
         given(service.update(any(Person.class)))
                 .willAnswer((invocation)-> invocation.getArgument(0));

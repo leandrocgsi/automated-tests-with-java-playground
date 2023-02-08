@@ -146,7 +146,7 @@ public class PersonServiceTests {
         given(repository.findById(1L)).willReturn(Optional.of(person));
 
         // when
-        Person savedPerson = service.findById(person.getId());
+        Optional<Person> savedPerson = service.findById(person.getId());
 
         // then
         assertThat(savedPerson).isNotNull();
