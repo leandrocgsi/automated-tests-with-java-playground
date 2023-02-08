@@ -31,7 +31,7 @@ public class PersonServiceTests {
     private PersonRepository repository;
 
     @InjectMocks
-    private PersonServices personService;
+    private PersonServices service;
 
     private Person person;
 
@@ -40,6 +40,7 @@ public class PersonServiceTests {
         //personRepository = Mockito.mock(PersonRepository.class);
         //personService = new PersonServiceImpl(personRepository);
         person = new Person(
+        		1L,
         		"Leandro",
         		"Costa",
         		"leandro@erudio.com.br",
@@ -59,10 +60,10 @@ public class PersonServiceTests {
         given(repository.save(person)).willReturn(person);
 
         System.out.println(repository);
-        System.out.println(personService);
+        System.out.println(service);
 
         // when -  action or the behavior that we are going test
-        Person savedPerson = personService.create(person);
+        Person savedPerson = service.create(person);
 
         System.out.println(savedPerson);
         // then - verify the output
@@ -78,11 +79,11 @@ public class PersonServiceTests {
                 .willReturn(Optional.of(person));
 
         System.out.println(repository);
-        System.out.println(personService);
+        System.out.println(service);
 
         // when -  action or the behavior that we are going test
         org.junit.jupiter.api.Assertions.assertThrows(ResourceNotFoundException.class, () -> {
-            personService.create(person);
+            service.create(person);
         });
 
         // then
@@ -106,7 +107,7 @@ public class PersonServiceTests {
         given(repository.findAll()).willReturn(List.of(person,person1));
 
         // when -  action or the behavior that we are going test
-        List<Person> personList = personService.findAll();
+        List<Person> personList = service.findAll();
 
         // then - verify the output
         assertThat(personList).isNotNull();
@@ -130,7 +131,7 @@ public class PersonServiceTests {
         given(repository.findAll()).willReturn(Collections.emptyList());
 
         // when -  action or the behavior that we are going test
-        List<Person> personList = personService.findAll();
+        List<Person> personList = service.findAll();
 
         // then - verify the output
         assertThat(personList).isEmpty();
@@ -145,7 +146,7 @@ public class PersonServiceTests {
         given(repository.findById(1L)).willReturn(Optional.of(person));
 
         // when
-        Person savedPerson = personService.findById(person.getId());
+        Person savedPerson = service.findById(person.getId());
 
         // then
         assertThat(savedPerson).isNotNull();
@@ -157,11 +158,14 @@ public class PersonServiceTests {
     @Test
     public void givenPersonObject_whenUpdatePerson_thenReturnUpdatedPerson(){
         // given - precondition or setup
+        given(repository.findById(1L)).willReturn(Optional.of(person));
+        
+    	person.setEmail("rstallman@erudio.com.br");
+    	person.setFirstName("Richard");
+    	
         given(repository.save(person)).willReturn(person);
-        person.setEmail("rstallman@erudio.com.br");
-        person.setFirstName("Richard");
         // when -  action or the behavior that we are going test
-        Person updatedPerson = personService.update(person);
+        Person updatedPerson = service.update(person);
 
         // then - verify the output
         assertThat(updatedPerson.getEmail()).isEqualTo("rstallman@erudio.com.br");
@@ -173,14 +177,16 @@ public class PersonServiceTests {
     @Test
     public void givenPersonId_whenDeletePerson_thenNothing(){
         // given - precondition or setup
-        long personId = 1L;
+        long id = 1L;
 
-        willDoNothing().given(repository).deleteById(personId);
+
+        given(repository.findById(1L)).willReturn(Optional.of(person));
+        willDoNothing().given(repository).delete(person);
 
         // when -  action or the behavior that we are going test
-        personService.delete(personId);
+        service.delete(id);
 
         // then - verify the output
-        verify(repository, times(1)).deleteById(personId);
+        verify(repository, times(1)).delete(person);
     }
 }
