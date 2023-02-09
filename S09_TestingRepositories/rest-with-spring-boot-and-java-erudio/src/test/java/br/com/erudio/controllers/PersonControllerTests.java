@@ -159,45 +159,46 @@ public class PersonControllerTests {
                 .andDo(print());
 
     }
+    
     // JUnit test for update person REST API - positive scenario
-        @Test
-        public void givenUpdatedPerson_whenUpdatePerson_thenReturnUpdatePersonObject() throws Exception{
-            // given - precondition or setup
-            long personId = 1L;
-            Person savedPerson = new Person(
-            		1L,
-            		"Leandro",
-            		"Costa",
-            		"leandro@erudio.com.br",
-            		"Uberlândia - Minas Gerais - Brasil",
-            		"Male"
-        		);
+    @Test
+    public void givenUpdatedPerson_whenUpdatePerson_thenReturnUpdatePersonObject() throws Exception{
+        // given - precondition or setup
+        long personId = 1L;
+        Person savedPerson = new Person(
+        		1L,
+        		"Leandro",
+        		"Costa",
+        		"leandro@erudio.com.br",
+        		"Uberlândia - Minas Gerais - Brasil",
+        		"Male"
+    		);
 
-            Person updatedPerson = new Person(
-            		2L,
-            		"Ayrton",
-            		"Senna",
-            		"sena@erudio.com.br",
-            		"Some Place in Brasil",
-            		"Male"
-        		);
-            given(service.findById(personId)).willReturn(Optional.of(savedPerson));
-            given(service.update(any(Person.class)))
-                    .willAnswer((invocation)-> invocation.getArgument(0));
+        Person updatedPerson = new Person(
+        		2L,
+        		"Ayrton",
+        		"Senna",
+        		"sena@erudio.com.br",
+        		"Some Place in Brasil",
+        		"Male"
+    		);
+        given(service.findById(personId)).willReturn(Optional.of(savedPerson));
+        given(service.update(any(Person.class)))
+                .willAnswer((invocation)-> invocation.getArgument(0));
 
-            // when -  action or the behavior that we are going test
-            ResultActions response = mockMvc.perform(put("/api/persons/{id}", personId)
-                                        .contentType(MediaType.APPLICATION_JSON)
-                                        .content(objectMapper.writeValueAsString(updatedPerson)));
+        // when -  action or the behavior that we are going test
+        ResultActions response = mockMvc.perform(put("/api/persons/{id}", personId)
+                                    .contentType(MediaType.APPLICATION_JSON)
+                                    .content(objectMapper.writeValueAsString(updatedPerson)));
 
 
-            // then - verify the output
-            response.andExpect(status().isOk())
-                    .andDo(print())
-                    .andExpect(jsonPath("$.firstName", is(updatedPerson.getFirstName())))
-                    .andExpect(jsonPath("$.lastName", is(updatedPerson.getLastName())))
-                    .andExpect(jsonPath("$.email", is(updatedPerson.getEmail())));
-        }
+        // then - verify the output
+        response.andExpect(status().isOk())
+                .andDo(print())
+                .andExpect(jsonPath("$.firstName", is(updatedPerson.getFirstName())))
+                .andExpect(jsonPath("$.lastName", is(updatedPerson.getLastName())))
+                .andExpect(jsonPath("$.email", is(updatedPerson.getEmail())));
+    }
 
     // JUnit test for update person REST API - negative scenario
     @Test
