@@ -57,7 +57,7 @@ public class PersonControllerTests {
                 .willAnswer((invocation)-> invocation.getArgument(0));
 
         // when - action or behavior that we are going test
-        ResultActions response = mockMvc.perform(post("/api/persons")
+        ResultActions response = mockMvc.perform(post("/person")
             .contentType(MediaType.APPLICATION_JSON)
             .content(objectMapper.writeValueAsString(person)));
 
@@ -97,7 +97,7 @@ public class PersonControllerTests {
         given(service.findAll()).willReturn(listOfPersons);
 
         // when -  action or the behavior that we are going test
-        ResultActions response = mockMvc.perform(get("/api/persons"));
+        ResultActions response = mockMvc.perform(get("/person"));
 
         // then - verify the output
         response.andExpect(status().isOk())
@@ -124,7 +124,7 @@ public class PersonControllerTests {
         given(service.findById(personId)).willReturn(Optional.of(person));
 
         // when -  action or the behavior that we are going test
-        ResultActions response = mockMvc.perform(get("/api/persons/{id}", personId));
+        ResultActions response = mockMvc.perform(get("/person/{id}", personId));
 
         // then - verify the output
         response.andExpect(status().isOk())
@@ -152,7 +152,7 @@ public class PersonControllerTests {
         given(service.findById(personId)).willReturn(Optional.empty());
 
         // when -  action or the behavior that we are going test
-        ResultActions response = mockMvc.perform(get("/api/persons/{id}", personId));
+        ResultActions response = mockMvc.perform(get("/person/{id}", personId));
 
         // then - verify the output
         response.andExpect(status().isNotFound())
@@ -187,7 +187,7 @@ public class PersonControllerTests {
                 .willAnswer((invocation)-> invocation.getArgument(0));
 
         // when -  action or the behavior that we are going test
-        ResultActions response = mockMvc.perform(put("/api/persons/{id}", personId)
+        ResultActions response = mockMvc.perform(put("/person")
                                     .contentType(MediaType.APPLICATION_JSON)
                                     .content(objectMapper.writeValueAsString(updatedPerson)));
 
@@ -227,7 +227,7 @@ public class PersonControllerTests {
                 .willAnswer((invocation)-> invocation.getArgument(0));
 
         // when -  action or the behavior that we are going test
-        ResultActions response = mockMvc.perform(put("/api/persons/{id}", personId)
+        ResultActions response = mockMvc.perform(put("/person")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(updatedPerson)));
 
@@ -244,7 +244,7 @@ public class PersonControllerTests {
         willDoNothing().given(service).delete(personId);
 
         // when -  action or the behavior that we are going test
-        ResultActions response = mockMvc.perform(delete("/api/persons/{id}", personId));
+        ResultActions response = mockMvc.perform(delete("/person/{id}", personId));
 
         // then - verify the output
         response.andExpect(status().isOk())
