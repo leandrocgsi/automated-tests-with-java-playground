@@ -2,8 +2,10 @@ package br.com.erudio.controllers;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.willDoNothing;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -26,6 +28,7 @@ import org.springframework.test.web.servlet.ResultActions;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import br.com.erudio.exceptions.ResourceNotFoundException;
 import br.com.erudio.model.Person;
 import br.com.erudio.services.PersonServices;
 
@@ -46,7 +49,6 @@ public class PersonControllerTests {
 
         // given - precondition or setup
         Person person = new Person(
-        		1L,
         		"Leandro",
         		"Costa",
         		"leandro@erudio.com.br",
@@ -206,14 +208,13 @@ public class PersonControllerTests {
         // given - precondition or setup
         long personId = 1L;
         Person savedPerson = new Person(
-        		1L,
         		"Leandro",
         		"Costa",
         		"leandro@erudio.com.br",
         		"Uberlândia - Minas Gerais - Brasil",
         		"Male"
     		);
-
+        
         Person updatedPerson = new Person(
         		"Ayrton",
         		"Senna",
@@ -221,9 +222,11 @@ public class PersonControllerTests {
         		"Some Place in Brasil",
         		"Male"
     		);
-        given(service.findById(personId)).willReturn(Optional.empty());
+        //given(service.findById(personId)).willReturn(Optional.empty());
+        given(service.findById(personId)).willReturn(Optional.of(savedPerson));
+        //when(service.findById(anyLong())).thenThrow(new ResourceNotFoundException("No records found for this ID!"));
         given(service.update(any(Person.class)))
-                .willAnswer((invocation)-> invocation.getArgument(0));
+                .willAnswer((invocation)-> invocation.getArgument(1));
 
         // when -  action or the behavior that we are going test
         ResultActions response = mockMvc.perform(put("/person")

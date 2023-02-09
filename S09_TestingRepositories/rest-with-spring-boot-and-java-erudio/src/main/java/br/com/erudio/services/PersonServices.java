@@ -44,7 +44,7 @@ public class PersonServices {
 		return repository.save(person);
 	}
 	
-	public Person update(Person person) {
+	public Person update(Person person) throws ResourceNotFoundException{
 		
 		logger.info("Updating one person!");
 		
