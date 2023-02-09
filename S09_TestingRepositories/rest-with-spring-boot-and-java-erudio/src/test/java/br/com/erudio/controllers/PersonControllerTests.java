@@ -63,7 +63,7 @@ public class PersonControllerTests {
 
         // then - verify the result or output using assert statements
         response.andDo(print()).
-                andExpect(status().isCreated())
+                andExpect(status().isOk())
                 .andExpect(jsonPath("$.firstName",
                         is(person.getFirstName())))
                 .andExpect(jsonPath("$.lastName",
@@ -215,7 +215,6 @@ public class PersonControllerTests {
     		);
 
         Person updatedPerson = new Person(
-        		2L,
         		"Ayrton",
         		"Senna",
         		"sena@erudio.com.br",
@@ -247,7 +246,7 @@ public class PersonControllerTests {
         ResultActions response = mockMvc.perform(delete("/person/{id}", personId));
 
         // then - verify the output
-        response.andExpect(status().isOk())
+        response.andExpect(status().isNoContent())
                 .andDo(print());
     }
 }
