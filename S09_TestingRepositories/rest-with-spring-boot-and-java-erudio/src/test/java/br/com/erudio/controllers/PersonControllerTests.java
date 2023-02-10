@@ -2,10 +2,8 @@ package br.com.erudio.controllers;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.willDoNothing;
-import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -28,7 +26,6 @@ import org.springframework.test.web.servlet.ResultActions;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import br.com.erudio.exceptions.ResourceNotFoundException;
 import br.com.erudio.model.Person;
 import br.com.erudio.services.PersonServices;
 
@@ -143,14 +140,7 @@ public class PersonControllerTests {
     public void givenInvalidPersonId_whenGetPersonById_thenReturnEmpty() throws Exception{
         // given - precondition or setup
         long personId = 1L;
-        Person person = new Person(
-        		1L,
-        		"Leandro",
-        		"Costa",
-        		"leandro@erudio.com.br",
-        		"Uberlândia - Minas Gerais - Brasil",
-        		"Male"
-    		);
+        
         given(service.findById(personId)).willReturn(Optional.empty());
 
         // when -  action or the behavior that we are going test

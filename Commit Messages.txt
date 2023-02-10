@@ -1,0 +1,7 @@
+automated-tests-playground/          git commit -m''
+README.md                            git commit -m''
+S08A_FirstStepsInJavawithSpringBoot/ git commit -m'First Steps in Spring Boot 3 with Java 19'
+S08B_ParametersAndExceptionHandler/  git commit -m'REST Parameters and Exception Handler'
+S08C_WorkingWithVerbs/               git commit -m'Working with four HTTP Main Verbs'
+S08D_ConnectingToMySQL/              git commit -m'Connecting to MySQL with Spring Data, JPA and Hibernate'
+S09_TestingRepositories/             git commit -m'Testing Repositories'
