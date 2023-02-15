@@ -1,15 +1,20 @@
 package br.com.erudio;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
- 
+import static org.junit.jupiter.api.Assertions.fail;
+
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import br.com.erudio.math.SimpleMath;
 
+@DisplayName("Test Math Operations in SimpleMath Class")
 class SimpleMathTest {
 	
+	// test[System Under Test]_[Condition or State Change]_[Expected Result]
+	@DisplayName("Test 6.2 + 2 = 8.2")
 	@Test
-	void testSum() {
+	void testSum_When_SixDotTwoIsAddedByTwo_ShouldReturnEigthDotTwo() {
 		
 		SimpleMath math = new SimpleMath();
 		
@@ -22,6 +27,13 @@ class SimpleMathTest {
 			() -> firstNumber + "+" + secondNumber + " did not produce " + expectedResult + "!");
 	}
 	
+	@DisplayName("Division by Zero")
+	@Test
+	void testSubtraction_When_FirstNumberIsDividedByZero_ShouldThrowArithmeticExcetion() {
+		fail();
+	}
+	
+	@DisplayName("Test 6.2 - 2 = 4.2")
 	@Test
 	void testSubtraction() {
 		
@@ -36,6 +48,7 @@ class SimpleMathTest {
 			() -> firstNumber + "-" + secondNumber +" did not produce " + expectedResult+ "!");
 	}
 	
+	@DisplayName("Test 6.2 * 2 = 12.4")
 	@Test
 	void testMultiplication() {
 		
@@ -50,6 +63,7 @@ class SimpleMathTest {
 			() -> firstNumber + "*" + secondNumber + " did not produce " + expectedResult + "!");
 	}
 	
+	@DisplayName("Test 6.2 / 2 = 3.1")
 	@Test
 	void testDivision() {
 		
@@ -64,6 +78,7 @@ class SimpleMathTest {
 			() -> firstNumber + "/" + secondNumber + " did not produce " + expectedResult + "!");
 	}
 	
+	@DisplayName("Test (6.2 + 2) / 2 = 4.1")
 	@Test
 	void testMeam() {
 		
@@ -78,6 +93,7 @@ class SimpleMathTest {
 			() -> "(" + firstNumber + "+" + secondNumber + ")/" + secondNumber + " did not produce " + expectedResult + "!");
 	}
 	
+	@DisplayName("Test Square Root of 81 = 9")
 	@Test
 	void testSquareRoot() {
 		
