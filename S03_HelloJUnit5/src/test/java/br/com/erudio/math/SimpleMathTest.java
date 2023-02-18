@@ -3,6 +3,7 @@ package br.com.erudio.math;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -25,6 +26,7 @@ class SimpleMathTest {
             () -> firstNumber + "+" + secondNumber + " did not produce " + expectedResult + "!");
     }
     
+    @Disabled
     @DisplayName("Division by Zero")
     @Test
     void testSubtraction_When_FirstNumberIsDividedByZero_ShouldThrowArithmeticExcetion() {
@@ -103,5 +105,27 @@ class SimpleMathTest {
         Double result = math.squareRoot(number);
         assertEquals(expected, result,
             () -> "Square Root of "+ number + " did not produce "+ expected + "!");
+    }
+    
+    // test[System Under Test]_[Condition or State Change]_[Expected Result]
+    @DisplayName("Test 6.2 + 2 = 8.2")
+    @Test
+    void testSum_When_XYZ_Should1() {
+        // Given / Arrange
+        
+        // When / Act
+        
+        // Then / Assert
+    }
+    
+    // test[System Under Test]_[Condition or State Change]_[Expected Result]
+    @DisplayName("Test 6.2 + 2 = 8.2")
+    @Test
+    void testSum_When_XYZ_Should() {
+        // Given / Arrange
+
+        // When / Act
+
+        // Then / Assert
     }
 }

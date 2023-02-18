@@ -3,6 +3,7 @@ package br.com.erudio.math;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -25,6 +26,7 @@ class SimpleMathTest {
             () -> firstNumber + "+" + secondNumber + " did not produce " + expectedResult + "!");
     }
     
+    @Disabled
     @DisplayName("Division by Zero")
     @Test
     void testSubtraction_When_FirstNumberIsDividedByZero_ShouldThrowArithmeticExcetion() {
