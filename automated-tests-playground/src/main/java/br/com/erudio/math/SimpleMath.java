@@ -15,7 +15,8 @@ public class SimpleMath {
     }
 
     public Double division(Double firstNumber, Double secondNumber) {
-        return firstNumber / secondNumber;
+        var value = firstNumber / secondNumber;
+        return value;
     }
 
     public Double mean(Double firstNumber, Double secondNumber) {

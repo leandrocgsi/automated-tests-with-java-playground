@@ -1,21 +1,48 @@
 package br.com.erudio.math;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 @DisplayName("Test Math Operations in SimpleMath Class")
 class SimpleMathTest {
     
+    SimpleMath math;
+    
+    @BeforeAll
+    static void setup() {
+        System.out.println("Running @BeforeAll method");
+    }
+    
+    @AfterAll
+    static void cleanup() {
+        System.out.println("Running @AfterAll method");
+    }
+    
+    @BeforeEach
+    void beforeEachMethod() {
+        math = new SimpleMath();
+        System.out.println("Running @BeforeEach method");
+    }
+    
+    @AfterEach
+    void afterEachMethod() {
+        math = new SimpleMath();
+        System.out.println("Running @AfterEach method");
+    }
+    
     // test[System Under Test]_[Condition or State Change]_[Expected Result]
     @DisplayName("Test 6.2 + 2 = 8.2")
     @Test
     void testSum_When_SixDotTwoIsAddedByTwo_ShouldReturnEigthDotTwo() {
         
-        SimpleMath math = new SimpleMath();
+        System.out.println("Test 6.2 + 2 = 8.2");
         
         double firstNumber = 6.2D;
         double secondNumber = 2D;
@@ -26,19 +53,36 @@ class SimpleMathTest {
             () -> firstNumber + "+" + secondNumber + " did not produce " + expectedResult + "!");
     }
     
-    @Disabled
+    //@Disabled
     @DisplayName("Division by Zero")
     @Test
     void testSubtraction_When_FirstNumberIsDividedByZero_ShouldThrowArithmeticExcetion() {
-        fail();
+        System.out.println("Division by Zero");
+        //fail();
+        
+        // given
+        double firstNumber = 6.2D;
+        double secondNumber = 0D;
+        
+        var expectedExceptionMessage = "Impossible to divide by zero";
+        
+        // when & then
+        ArithmeticException actualException = assertThrows(ArithmeticException.class, () -> {
+            //when
+            math.division(firstNumber, secondNumber);
+        }, () -> "Division by Zero should have throw an ArithmeticException");
+
+        // then
+        assertEquals(
+            expectedExceptionMessage,
+            actualException.getMessage(),
+            () -> "Unexpected exception message!");
     }
     
     @DisplayName("Test 6.2 - 2 = 4.2")
     @Test
     void testSubtraction() {
-        
-        SimpleMath math = new SimpleMath();
-        
+        System.out.println("Test 6.2 - 2 = 4.2");
         double firstNumber = 6.2D;
         double secondNumber = 2D;
         double expectedResult = 4.2D;
@@ -51,9 +95,7 @@ class SimpleMathTest {
     @DisplayName("Test 6.2 * 2 = 12.4")
     @Test
     void testMultiplication() {
-        
-        SimpleMath math = new SimpleMath();
-        
+        System.out.println("Test 6.2 * 2 = 12.4");
         double firstNumber = 6.2D;
         double secondNumber = 2D;
         double expectedResult = 12.4D;
@@ -66,8 +108,7 @@ class SimpleMathTest {
     @DisplayName("Test 6.2 / 2 = 3.1")
     @Test
     void testDivision() {
-        
-        SimpleMath math = new SimpleMath();
+        System.out.println("Test 6.2 / 2 = 3.1");
         
         double firstNumber = 6.2D;
         double secondNumber = 2D;
@@ -81,8 +122,8 @@ class SimpleMathTest {
     @DisplayName("Test (6.2 + 2) / 2 = 4.1")
     @Test
     void testMeam() {
-        
-        SimpleMath math = new SimpleMath();
+
+        System.out.println("Test (6.2 + 2) / 2 = 4.1");
         
         double firstNumber = 6.2D;
         double secondNumber = 2D;
@@ -96,8 +137,8 @@ class SimpleMathTest {
     @DisplayName("Test Square Root of 81 = 9")
     @Test
     void testSquareRoot() {
-        
-        SimpleMath math = new SimpleMath();
+
+        System.out.println("Test Square Root of 81 = 9");
         
         double number = 81D;
         double expected = 9D;
