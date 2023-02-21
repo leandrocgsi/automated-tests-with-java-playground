@@ -1,12 +1,13 @@
 package br.com.erudio.math;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
-import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 @DisplayName("Test Math Operations in SimpleMath Class")
 class SimpleMathTest {
@@ -18,6 +19,13 @@ class SimpleMathTest {
         math = new SimpleMath();
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = {"Pelé","Senna", "Keith Moon"})
+    void testValueSource(String firstName) {
+        System.out.println(firstName);
+        assertNotNull(firstName);
+    } 
+    
     @DisplayName("Test double subtraction [firstNumber, secondNumber, expectedResult]")
     //@Test
     @ParameterizedTest
@@ -32,8 +40,8 @@ class SimpleMathTest {
     
     @CsvSource({
         "6.2, 2, 3.1",
-        "71, 14, 57",
-        "18.3, 3.1, 14.9"
+        "71, 14, 5.07",
+        "18.3, 3.1, 5.90"
     })*/
     @CsvFileSource(resources = "/testDivision.csv")
     void testDivision(
@@ -45,7 +53,7 @@ class SimpleMathTest {
                 " / " + secondNumber + " = " + expectedResult + "");
         
         Double result = math.division(firstNumber, secondNumber);
-        assertEquals(expectedResult, result, 100D,
+        assertEquals(expectedResult, result, 2D,
             () -> firstNumber + "/" + secondNumber + " did not produce " + expectedResult + "!");
     }
 
@@ -54,8 +62,8 @@ class SimpleMathTest {
     //public static Stream<Arguments> testDivisionInputParameters() {
         return Stream.of(
             Arguments.of(6.2D, 2D, 3.1D),
-            Arguments.of(71D, 14D, 57D),
-            Arguments.of(18.3, 3.1D, 14,9D)
+            Arguments.of(71D, 14D, 5.07D),
+            Arguments.of(18.3, 3.1D, 5.90D)
         );
     }
     */
