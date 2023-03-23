@@ -3,8 +3,6 @@ package br.com.erudio.service;
 import java.util.Arrays;
 import java.util.List;
 
-import br.com.erudio.service.CourseService;
-
 public class CourseServiceStub implements CourseService {
     
 	public List<String> retrieveCourses(String user) {
