@@ -1,4 +1,4 @@
-package br.com.erudio.stubs;
+package br.com.erudio.service;
 
 import java.util.Arrays;
 import java.util.List;
