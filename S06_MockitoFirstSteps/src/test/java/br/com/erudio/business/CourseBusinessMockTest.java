@@ -8,6 +8,7 @@ import static org.mockito.Mockito.*;
 import br.com.erudio.service.CourseService;
 
 class CourseBusinessMockTest {
+    
     @Test
     void testRetrieveCoursesRelatedToSpring_usingAMock() {
         CourseService mockService = mock(CourseService.class);
@@ -18,6 +19,4 @@ class CourseBusinessMockTest {
         
         // Do another assertions
     }
-
-
 }
