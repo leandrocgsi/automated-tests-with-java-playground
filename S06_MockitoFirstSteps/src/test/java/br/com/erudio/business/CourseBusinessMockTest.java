@@ -2,6 +2,7 @@ package br.com.erudio.business;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.mockito.Mockito.*;
 
@@ -12,9 +13,14 @@ import br.com.erudio.service.CourseService;
 
 class CourseBusinessMockTest {
     
+    CourseService mockService;
+    @BeforeEach
+    void setup() {
+        mockService = mock(CourseService.class);
+    }
+    
     @Test
     void testRetrieveCoursesRelatedToSpring_usingAMock() {
-        CourseService mockService = mock(CourseService.class);
         
         List<String> courses = Arrays.asList(
             "REST API's RESTFul do 0 à Azure com ASP.NET Core 5 e Docker",
@@ -29,12 +35,27 @@ class CourseBusinessMockTest {
             "Kotlin para DEV's Java: Aprenda a Linguagem Padrão do Android",
             "Microsserviços do 0 com Spring Cloud, Kotlin e Docker");
         
-        // when(mockService.retrieveCourses("Leandro")).thenReturn(courses);
+        when(mockService.retrieveCourses("Leandro")).thenReturn(courses);
         
         CourseBusiness business = new CourseBusiness(mockService);
         var filteredCourses = business
             .retrieveCoursesRelatedToSpring("Leandro");
         assertEquals(4, filteredCourses.size());
+        
+        // Do another assertions
+    }
+    
+    @Test
+    void testRetrieveCoursesRelatedToSpring_withEmptyList() {
+        
+        List<String> courses = Arrays.asList();
+        
+        when(mockService.retrieveCourses("Leandro")).thenReturn(courses);
+        
+        CourseBusiness business = new CourseBusiness(mockService);
+        var filteredCourses = business
+                .retrieveCoursesRelatedToSpring("Leandro");
+        assertEquals(0, filteredCourses.size());
         
         // Do another assertions
     }
