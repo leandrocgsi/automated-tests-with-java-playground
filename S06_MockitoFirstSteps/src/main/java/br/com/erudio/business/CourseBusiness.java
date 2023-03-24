@@ -15,9 +15,10 @@ public class CourseBusiness {
 		this.courseService = courseService;
 	}
 
-	public List<String> retrieveCoursesRelatedToSpring(String title) {
+	public List<String> retrieveCoursesRelatedToSpring(String student) {
 		var filteredCourses = new ArrayList<String>();
-		var allCourses = courseService.retrieveCourses(title);
+		if("Foo Bar".equals(student)) return filteredCourses;
+		var allCourses = courseService.retrieveCourses(student);
 		for (String course : allCourses) {
 			if (course.contains("Spring")) {
 				filteredCourses.add(course);

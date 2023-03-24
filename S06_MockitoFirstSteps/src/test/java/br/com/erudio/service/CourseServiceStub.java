@@ -19,4 +19,10 @@ public class CourseServiceStub implements CourseService {
 	        "Kotlin para DEV's Java: Aprenda a Linguagem Padrão do Android",
 	        "Microsserviços do 0 com Spring Cloud, Kotlin e Docker");
 	}
+
+    @Override
+    public List<String> doSomething(String student) {
+        // TODO Auto-generated method stub
+        return null;
+    }
 }

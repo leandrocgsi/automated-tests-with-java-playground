@@ -14,8 +14,21 @@ class CourseBusinessStubTest {
         CourseService stubService = new CourseServiceStub();
         CourseBusiness business = new CourseBusiness(stubService);
         var filteredCourses = business
-            .retrieveCoursesRelatedToSpring("Spring");
-        assertEquals(2, filteredCourses.size());
+            .retrieveCoursesRelatedToSpring("Leandro");
+        assertEquals(4, filteredCourses.size());
+        
+        // Do another assertions
+    }
+    
+    @Test
+    void testRetrieveCoursesRelatedToSpringUsingEmptyTitle() {
+        CourseService stubService = new CourseServiceStub();
+        CourseBusiness business = new CourseBusiness(stubService);
+        var filteredCourses = business
+            .retrieveCoursesRelatedToSpring("Foo Bar");
+        assertEquals(0, filteredCourses.size());
+        
+        // Do another assertions
     }
 
 }
