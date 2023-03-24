@@ -2,6 +2,7 @@ package br.com.erudio.business;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
 
 import java.util.List;
@@ -45,5 +46,15 @@ public class ListTest {
         assertEquals("Erudio", list.get(0));
         assertEquals("Erudio", list.get(1));
     }
-
+    
+    @Test
+    public void mockingList_throwAnException() {
+        List<String> list = mock(List.class);
+        Mockito.when(list.get(Mockito.anyInt())).thenThrow(new RuntimeException("Foo Bar!!"));
+        // If you are using argument matchers, all arguments
+        // have to be provided by matchers.
+        assertThrows(RuntimeException.class, () -> {
+            list.get(0);
+        }, () -> "Should have throw an RuntimeException");
+    }
 }
