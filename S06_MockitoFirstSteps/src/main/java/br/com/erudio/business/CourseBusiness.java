@@ -9,21 +9,21 @@ import br.com.erudio.service.CourseService;
 public class CourseBusiness {
     
     // CourseService is a Dependency
-	private CourseService courseService;
+    private CourseService courseService;
 
-	CourseBusiness(CourseService courseService) {
-		this.courseService = courseService;
-	}
+    CourseBusiness(CourseService courseService) {
+        this.courseService = courseService;
+    }
 
-	public List<String> retrieveCoursesRelatedToSpring(String student) {
-		var filteredCourses = new ArrayList<String>();
-		if("Foo Bar".equals(student)) return filteredCourses;
-		var allCourses = courseService.retrieveCourses(student);
-		for (String course : allCourses) {
-			if (course.contains("Spring")) {
-				filteredCourses.add(course);
-			}
-		}
-		return filteredCourses;
-	}
+    public List<String> retrieveCoursesRelatedToSpring(String student) {
+        var filteredCourses = new ArrayList<String>();
+        if("Foo Bar".equals(student)) return filteredCourses;
+        var allCourses = courseService.retrieveCourses(student);
+        for (String course : allCourses) {
+            if (course.contains("Spring")) {
+                filteredCourses.add(course);
+            }
+        }
+        return filteredCourses;
+    }
 }
