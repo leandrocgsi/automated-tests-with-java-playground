@@ -14,6 +14,7 @@ import br.com.erudio.service.CourseService;
 class CourseBusinessMockTest {
     
     CourseService mockService;
+    
     @BeforeEach
     void setup() {
         mockService = mock(CourseService.class);
