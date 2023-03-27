@@ -1,13 +1,16 @@
 package br.com.erudio.business;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
 import java.util.List;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.mockito.BDDMockito;
 
 import br.com.erudio.service.CourseService;
 
@@ -20,6 +23,38 @@ class CourseBusinessMockBDDTest {
         mockService = mock(CourseService.class);
     }
     
+    // test[System Under Test]_[Condition or State Change]_[Expected Result]
+    @DisplayName("Courses Related to Spring when Using a mock should Return a list with size 4")
+    @Test
+    void testCoursesRelatedToSpring_When_UsingAMock_Should_ReturnAListWithSize4() {
+        // Given / Arrange
+        List<String> courses = Arrays.asList(
+                "REST API's RESTFul do 0 à Azure com ASP.NET Core 5 e Docker",
+                "Agile Desmistificado com Scrum, XP, Kanban e Trello",
+                "Spotify Engineering Culture Desmistificado",
+                "REST API's RESTFul do 0 à AWS com Spring Boot 3 Java e Docker",
+                "Docker do Zero à Maestria - Contêinerização Desmistificada",
+                "Docker para Amazon AWS Implante Apps Java e .NET com Travis CI",
+                "Microsserviços do 0 com Spring Cloud, Spring Boot e Docker",
+                "Arquitetura de Microsserviços do 0 com ASP.NET, .NET 6 e C#",
+                "REST API's RESTFul do 0 à AWS com Spring Boot 3 Kotlin e Docker",
+                "Kotlin para DEV's Java: Aprenda a Linguagem Padrão do Android",
+                "Microsserviços do 0 com Spring Cloud, Kotlin e Docker");
+        
+        given(mockService.retrieveCourses("Leandro")).willReturn(courses);
+        
+        // When / Act
+        // Then / Assert
+        
+
+            
+            
+            
+            CourseBusiness business = new CourseBusiness(mockService);
+            var filteredCourses = business
+                .retrieveCoursesRelatedToSpring("Leandro");
+            assertEquals(4, filteredCourses.size());
+    }
     @Test
     void testRetrieveCoursesRelatedToSpring_usingAMock() {
         
