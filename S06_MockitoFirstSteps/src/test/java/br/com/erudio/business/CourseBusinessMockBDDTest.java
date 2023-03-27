@@ -1,6 +1,10 @@
 package br.com.erudio.business;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
+
 import static org.mockito.BDDMockito.*;
 import static org.mockito.Mockito.mock;
 
@@ -65,7 +69,7 @@ class CourseBusinessMockBDDTest {
         
         // When / Act
         var filteredCourses = business
-                .retrieveCoursesRelatedToSpring("Leandro");
+            .retrieveCoursesRelatedToSpring("Leandro");
 
         // Then / Assert
         assertEquals(0, filteredCourses.size());

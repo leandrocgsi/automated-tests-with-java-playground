@@ -1,9 +1,10 @@
 package br.com.erudio.business;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.mock;
 
 import java.util.List;
 
@@ -14,46 +15,63 @@ public class ListTest {
 
     @Test
     public void mockingListSizeTest() {
+        
+        // Given / Arrange
         List list = mock(List.class);
-        when(list.size()).thenReturn(10);
-        assertEquals(10, list.size());
-        assertEquals(10, list.size());
-        assertEquals(10, list.size());
+        given(list.size()).willReturn(10);
+
+        // When / Act && Then / Assert
+        assertThat(list.size(), is(10));
+        assertThat(list.size(), is(10));
+        assertThat(list.size(), is(10));
     }
 
     @Test
     public void mockingListSize_withMultipleReturnValues() {
+        
+        // Given / Arrange
         List list = mock(List.class);
-        when(list.size()).thenReturn(10).thenReturn(20);
-        assertEquals(10, list.size()); // First Call
-        assertEquals(20, list.size()); // Second Call
+        given(list.size()).willReturn(10).willReturn(20);
+
+        // When / Act && Then / Assert
+        assertThat(list.size(), is(10)); // First Call
+        assertThat(list.size(), is(20)); // Second Call
     }
 
     @Test
     public void mockingListGet() {
+        
+        // Given / Arrange
         List<String> list = mock(List.class);
-        when(list.get(0)).thenReturn("Erudio");
-        assertEquals("Erudio", list.get(0));
+        given(list.get(0)).willReturn("Erudio");
+
+        // When / Act && Then / Assert
+        assertThat(list.get(0), is("Erudio"));
         assertNull(list.get(1));
     }
 
     @Test
     public void mockingListGet_withAny() {
+
+        // Given / Arrange
         List<String> list = mock(List.class);
-        when(list.get(Mockito.anyInt())).thenReturn("Erudio");
-        // If you are using argument matchers, all arguments
-        // have to be provided by matchers.
-        assertEquals("Erudio", list.get(0));
-        assertEquals("Erudio", list.get(1));
+        given(list.get(Mockito.anyInt())).willReturn("Erudio");
+
+        // When / Act && Then / Assert
+        assertThat(list.get(0), is("Erudio"));
+        assertThat(list.get(1), is("Erudio"));
     }
     
     @Test
     public void mockingList_throwAnException() {
+        
+        // Given / Arrange
         List<String> list = mock(List.class);
-        when(list.get(Mockito.anyInt())).thenThrow(new RuntimeException("Foo Bar!!"));
-        // If you are using argument matchers, all arguments
-        // have to be provided by matchers.
+        given(list.get(Mockito.anyInt())).willThrow(new RuntimeException("Foo Bar!!"));
+
+        // When / Act && Then / Assert
         assertThrows(RuntimeException.class, () -> {
+            // When / Act
             list.get(0);
         }, () -> "Should have throw an RuntimeException");
     }
