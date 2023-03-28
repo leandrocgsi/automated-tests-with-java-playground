@@ -2,7 +2,8 @@ package br.com.erudio.business;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 
@@ -17,7 +18,7 @@ public class ListTest {
     public void mockingListSizeTest() {
         
         // Given / Arrange
-        List list = mock(List.class);
+        List<?> list = mock(List.class);
         given(list.size()).willReturn(10);
 
         // When / Act && Then / Assert
@@ -30,7 +31,7 @@ public class ListTest {
     public void mockingListSize_withMultipleReturnValues() {
         
         // Given / Arrange
-        List list = mock(List.class);
+        List<?> list = mock(List.class);
         given(list.size()).willReturn(10).willReturn(20);
 
         // When / Act && Then / Assert
@@ -42,7 +43,7 @@ public class ListTest {
     public void mockingListGet() {
         
         // Given / Arrange
-        List<String> list = mock(List.class);
+        var list = mock(List.class);
         given(list.get(0)).willReturn("Erudio");
 
         // When / Act && Then / Assert
@@ -54,7 +55,7 @@ public class ListTest {
     public void mockingListGet_withAny() {
 
         // Given / Arrange
-        List<String> list = mock(List.class);
+        var list = mock(List.class);
         given(list.get(Mockito.anyInt())).willReturn("Erudio");
 
         // When / Act && Then / Assert
@@ -66,7 +67,7 @@ public class ListTest {
     public void mockingList_throwAnException() {
         
         // Given / Arrange
-        List<String> list = mock(List.class);
+        var list = mock(List.class);
         given(list.get(Mockito.anyInt())).willThrow(new RuntimeException("Foo Bar!!"));
 
         // When / Act && Then / Assert
