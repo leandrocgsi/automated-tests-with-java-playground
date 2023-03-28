@@ -7,6 +7,7 @@ import static org.hamcrest.Matchers.*;
 
 import static org.mockito.BDDMockito.*;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 import java.util.Arrays;
 import java.util.List;
@@ -56,6 +57,26 @@ class CourseBusinessMockBDDTest {
         // Then / Assert
         assertThat(filteredCourses.size(), is(4));
     }
+    
+    // test[System Under Test]_[Condition or State Change]_[Expected Result]
+    @DisplayName("Delete Courses Not Related to Spring Using Mockito Verify should call Method")
+    @Test
+    void testDeleteCoursesNotRelatedToSpring_UsingMockitoVerify_Should_CallMethod() {
+        
+        // Given / Arrange
+        given(mockService.retrieveCourses("Leandro")).willReturn(courses);
+        CourseBusiness business = new CourseBusiness(mockService);
+        
+        // When / Act
+        business
+            .deleteCoursesNotRelatedToSpring("Leandro");
+
+        // Then / Assert
+        verify(mockService, times(1)).deleteCourse("Agile Desmistificado com Scrum, XP, Kanban e Trello");
+        verify(mockService).deleteCourse("Arquitetura de Microsserviços do 0 com ASP.NET, .NET 6 e C#");
+        verify(mockService, never()).deleteCourse("REST API's RESTFul do 0 à AWS com Spring Boot 3 Java e Docker");
+        
+    } 
     
     @Test
     void testRetrieveCoursesRelatedToSpring_withEmptyList() {
