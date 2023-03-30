@@ -108,8 +108,10 @@ class CourseBusinessMockBDDTest {
             .deleteCoursesNotRelatedToSpring("Leandro");
 
         // Then / Assert
-        then(mockService).should().deleteCourse(argumentCaptor.capture());
-        assertThat(argumentCaptor.getValue(), is("Agile Desmistificado com Scrum, XP, Kanban e Trello"));
+        //then(mockService).should().deleteCourse(argumentCaptor.capture());
+        //assertThat(argumentCaptor.getValue(), is("Agile Desmistificado com Scrum, XP, Kanban e Trello"));
+        then(mockService).should(times(7)).deleteCourse(argumentCaptor.capture());
+        assertThat(argumentCaptor.getAllValues().size(), is(7));
     } 
     
     @Test
