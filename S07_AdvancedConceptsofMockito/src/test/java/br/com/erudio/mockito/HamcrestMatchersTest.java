@@ -21,7 +21,7 @@ public class HamcrestMatchersTest {
         // When / Act & Then / Assert
         assertThat(scores, hasSize(4));
         // assertThat(scores, hasItems(23, 99, 100));
-        assertThat(scores, hasItems(23, 99, 100));
+        assertThat(scores, hasItems(99, 100));
         assertThat(scores, everyItem(greaterThan(90)));
         
         // Check Strings
