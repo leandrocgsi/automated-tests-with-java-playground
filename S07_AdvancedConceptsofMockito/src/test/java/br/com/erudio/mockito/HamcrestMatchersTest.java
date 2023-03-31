@@ -14,9 +14,9 @@ import org.junit.jupiter.api.Test;
 public class HamcrestMatchersTest {
 
     // test[System Under Test]_[Condition or State Change]_[Expected Result]
-    @DisplayName("Display Name")
+    @DisplayName("Test Hamcrest Matchers")
     @Test
-    void testABCD_When_XYZ_Should() {
+    void testHamcrestMatchers() {
         // Given / Arrange
         List<Integer> scores = Arrays.asList(99, 100, 101, 105);
         
