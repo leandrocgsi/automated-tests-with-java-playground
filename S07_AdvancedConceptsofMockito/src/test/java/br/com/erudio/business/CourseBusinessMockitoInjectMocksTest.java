@@ -1,10 +1,13 @@
 package br.com.erudio.business;
 
-import static org.mockito.Mockito.*;
-import static org.mockito.BDDMockito.*;
-
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.is;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.BDDMockito.then;
+import static org.mockito.Mockito.atLeastOnce;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 import java.util.Arrays;
 import java.util.List;
@@ -12,22 +15,34 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import br.com.erudio.service.CourseService;
 
+@ExtendWith(MockitoExtension.class)
 class CourseBusinessMockitoInjectMocksTest {
 
+    @Mock
     CourseService mockService;
+    
+    @InjectMocks
     CourseBusiness business;
+    // business = new CourseBusiness(mockService);
+    
+    @Captor
+    ArgumentCaptor<String> argumentCaptor;
+    
     List<String> courses;
     
     @BeforeEach
     void setup() {
         
         // Given / Arrange
-        mockService = mock(CourseService.class);
-        business = new CourseBusiness(mockService);
         
         courses = Arrays.asList(
                 "REST API's RESTFul do 0 à Azure com ASP.NET Core 5 e Docker",
