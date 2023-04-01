@@ -15,6 +15,7 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentCaptor;
 
 import br.com.erudio.service.CourseService;
 
@@ -84,7 +85,21 @@ class CourseBusinessMockBDDTest {
     @Test
     void testDeleteCoursesNotRelatedToSpring_CapturingArguments_Should_CallMethod() {
         
+        
+        // Declare Argument Captor
+        ArgumentCaptor<String> argumentCaptor = ArgumentCaptor.forClass(String.class);
+        
+        // Define Argument captor on specific method call
+        // Capture the argument
+        
+        
         // Given / Arrange
+        
+
+        courses = Arrays.asList(
+            "Agile Desmistificado com Scrum, XP, Kanban e Trello",
+            "REST API's RESTFul do 0 à AWS com Spring Boot 3 Java e Docker");
+        
         given(mockService.retrieveCourses("Leandro")).willReturn(courses);
         CourseBusiness business = new CourseBusiness(mockService);
         
@@ -93,13 +108,8 @@ class CourseBusinessMockBDDTest {
             .deleteCoursesNotRelatedToSpring("Leandro");
 
         // Then / Assert
-        verify(mockService, atLeastOnce()).deleteCourse("Agile Desmistificado com Scrum, XP, Kanban e Trello");
-        verify(mockService).deleteCourse("Arquitetura de Microsserviços do 0 com ASP.NET, .NET 6 e C#");
-        verify(mockService, never()).deleteCourse("REST API's RESTFul do 0 à AWS com Spring Boot 3 Java e Docker");
-        
-        then(mockService).should().deleteCourse("Agile Desmistificado com Scrum, XP, Kanban e Trello");
-        then(mockService).should().deleteCourse("Arquitetura de Microsserviços do 0 com ASP.NET, .NET 6 e C#");
-        then(mockService).should(never()).deleteCourse("REST API's RESTFul do 0 à AWS com Spring Boot 3 Java e Docker");
+        then(mockService).should().deleteCourse(argumentCaptor.capture());
+        assertThat(argumentCaptor.getValue(), is("Agile Desmistificado com Scrum, XP, Kanban e Trello"));
     } 
     
     @Test
