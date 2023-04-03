@@ -93,10 +93,12 @@ class CourseBusinessMockBDDTest {
         // Capture the argument
         
         
-// Given / Arrange
-courses = Arrays.asList(
-    "Agile Desmistificado com Scrum, XP, Kanban e Trello",
-    "REST API's RESTFul do 0 à AWS com Spring Boot 3 Java e Docker");
+        // Given / Arrange
+        /**
+        courses = Arrays.asList(
+            "Agile Desmistificado com Scrum, XP, Kanban e Trello",
+            "REST API's RESTFul do 0 à AWS com Spring Boot 3 Java e Docker");
+        */
         
         given(mockService.retrieveCourses("Leandro")).willReturn(courses);
         CourseBusiness business = new CourseBusiness(mockService);
