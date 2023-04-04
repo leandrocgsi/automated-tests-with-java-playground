@@ -17,6 +17,10 @@ import br.com.erudio.powermock.utils.UtilityClass;
 @ExtendWith(MockitoExtension.class)
 public class MockingStaticMethodTest {
     
+    // Use a specific Extension
+    // Initialize UtilityClass
+    // Do your mocks
+    
     @Mock
     Dependency dependency;
     
