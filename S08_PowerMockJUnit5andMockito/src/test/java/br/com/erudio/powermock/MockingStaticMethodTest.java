@@ -1,15 +1,17 @@
 package br.com.erudio.powermock;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.mockStatic;
 import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.MockedStatic;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import br.com.erudio.powermock.utils.UtilityClass;
@@ -26,11 +28,6 @@ public class MockingStaticMethodTest {
     
     @InjectMocks
     SystemUnderTest sut;
-
-    @BeforeEach
-    void setup() {
-        // Given / Arrange
-    }
     
     @Test
     void testMockingStaticMethod() {
@@ -39,11 +36,15 @@ public class MockingStaticMethodTest {
         List<Integer> stats =  Arrays.asList(1,2,3);
         when(dependency.retrieveAllStats()).thenReturn(stats);
         
-        when(UtilityClass.staticMethod(5)).thenReturn(127);
+        try (MockedStatic<UtilityClass> utilities = mockStatic(UtilityClass.class)) {
+            utilities.when(() -> UtilityClass.staticMethod(5))
+                .thenReturn(127);
             
-        // When / Act
-        sut.methodCallingAStaticMethod();
-        
-        // Then / Assert 
+            // When / Act
+            int result = sut.methodCallingAStaticMethod();
+            
+            // Then / Assert 
+            assertEquals(127, result);
+        }
     }
 }
