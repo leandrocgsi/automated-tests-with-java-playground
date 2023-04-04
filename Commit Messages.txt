@@ -3,7 +3,7 @@ S04_AdvancedConceptsofJUnit5/        git acmp 'Advanced Concepts of JUnit 5'
 S05_JUnit5andTDD/                    git acmp 'TDD - Test Driven Development'
 S06_MockitoFirstSteps/               git acmp "Mockito's First Steps"
 S07_AdvancedConceptsofMockito/       git acmp 'Advanced Concepts of Mockito'
-S08_PowerMockJUnit5andMockito/       git acmp 'PowerMock JUnit 5 and Mockito'
+S08_PowerMockJUnit5andMockito/       git acmp 'PowerMock, JUnit 5 and Mockito'
 S09_CodeCoverage/                    git acmp 'Code Coverage'
 S10A_FirstStepsInJavawithSpringBoot/ git acmp 'First Steps in Spring Boot 3 with Java 19'
 S10B_ParametersAndExceptionHandler/  git acmp 'REST Parameters and Exception Handler'
