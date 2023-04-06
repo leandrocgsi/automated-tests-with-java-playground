@@ -1,25 +1,24 @@
 package br.com.erudio.powermock;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.mockStatic;
-import static org.mockito.Mockito.when;
+import static org.powermock.api.mockito.PowerMockito.*;
 
 import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockedStatic;
 import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
 
 import br.com.erudio.powermock.utils.UtilityClass;
 
-@ExtendWith(MockitoExtension.class)
+@RunWith(PowerMockRunner.class)
+@PrepareForTest(UtilityClass.class)
 public class MockingStaticMethodTest {
     
     // Use a specific Extension
@@ -29,7 +28,7 @@ public class MockingStaticMethodTest {
     @Mock
     Dependency dependency;
     
-    //@InjectMocks
+    @InjectMocks
     SystemUnderTest sut;
     
     @BeforeEach
