@@ -35,7 +35,7 @@ public class MockingStaticMethodTest {
     @BeforeEach
     public void setup() {
         sut = new SystemUnderTest();
-        MockitoAnnotations.openMocks(this);
+        //MockitoAnnotations.openMocks(this);
     }
     
     @Test
