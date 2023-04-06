@@ -29,11 +29,12 @@ public class MockingStaticMethodTest {
     @Mock
     Dependency dependency;
     
-    @InjectMocks
+    //@InjectMocks
     SystemUnderTest sut;
     
     @BeforeEach
     public void setup() {
+        sut = new SystemUnderTest();
         MockitoAnnotations.openMocks(this);
     }
     
