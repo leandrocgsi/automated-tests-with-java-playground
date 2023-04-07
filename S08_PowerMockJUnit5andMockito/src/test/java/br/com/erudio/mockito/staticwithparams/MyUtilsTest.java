@@ -10,18 +10,16 @@ import org.mockito.Mockito;
 
 class MyUtilsTest {
 
-  @Test
-  void shouldMockStaticMethod() {
+    @Test
+    void shouldMockStaticMethod() {
 
-    try (MockedStatic<MyUtils> mockedStatic = Mockito.mockStatic(MyUtils.class)) {
+        try (MockedStatic<MyUtils> mockedStatic = Mockito.mockStatic(MyUtils.class)) {
 
-      mockedStatic
-        .when(() -> MyUtils.getWelcomeMessage(eq("duke"), anyBoolean()))
-        .thenReturn("Howdy duke!");
+            mockedStatic.when(() -> MyUtils.getWelcomeMessage(eq("duke"), anyBoolean())).thenReturn("Howdy duke!");
 
-      String result = MyUtils.getWelcomeMessage("duke", false);
+            String result = MyUtils.getWelcomeMessage("duke", false);
 
-      assertEquals("Howdy duke!", result);
+            assertEquals("Howdy duke!", result);
+        }
     }
-  }
 }
