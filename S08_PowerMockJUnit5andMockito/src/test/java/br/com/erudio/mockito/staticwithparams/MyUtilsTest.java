@@ -15,11 +15,11 @@ class MyUtilsTest {
 
         try (MockedStatic<MyUtils> mockedStatic = Mockito.mockStatic(MyUtils.class)) {
 
-            mockedStatic.when(() -> MyUtils.getWelcomeMessage(eq("duke"), anyBoolean())).thenReturn("Howdy duke!");
+            mockedStatic.when(() -> MyUtils.getWelcomeMessage(eq("Erudio"), anyBoolean())).thenReturn("Howdy Erudio!");
 
-            String result = MyUtils.getWelcomeMessage("duke", false);
+            String result = MyUtils.getWelcomeMessage("Erudio", false);
 
-            assertEquals("Howdy duke!", result);
+            assertEquals("Howdy Erudio!", result);
         }
     }
 }
