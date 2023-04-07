@@ -1,32 +1,32 @@
 package br.com.erudio.mockito.constructor;
 
-import org.junit.jupiter.api.Test;
-import org.mockito.MockedConstruction;
-import org.mockito.Mockito;
-
-import java.math.BigDecimal;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.mockConstruction;
 import static org.mockito.Mockito.when;
+
+import java.math.BigDecimal;
+
+import org.junit.jupiter.api.Test;
+import org.mockito.MockedConstruction;
 
 class CheckoutServiceTest {
 
-  @Test
-  void mockObjectConstruction() {
-    try (MockedConstruction<PaymentProcessor> mocked = Mockito.mockConstruction(PaymentProcessor.class,
-      (mock, context) -> {
-        // further stubbings ...
-        when(mock.chargeCustomer(anyString(), any(BigDecimal.class))).thenReturn(BigDecimal.TEN);
-      })) {
+    @Test
+    void mockObjectConstruction() {
+        try (MockedConstruction<PaymentProcessor> mocked = mockConstruction(PaymentProcessor.class,
+                (mock, context) -> {
+                    // further stubbings ...
+                    when(mock.chargeCustomer(anyString(), any(BigDecimal.class))).thenReturn(BigDecimal.TEN);
+                })) {
 
-      CheckoutService cut = new CheckoutService();
+            CheckoutService service = new CheckoutService();
 
-      BigDecimal result = cut.purchaseProduct("MacBook Pro", "42");
+            BigDecimal result = service.purchaseProduct("MacBook Pro", "42");
 
-      assertEquals(BigDecimal.TEN, result);
-      assertEquals(1, mocked.constructed().size());
+            assertEquals(BigDecimal.TEN, result);
+            assertEquals(1, mocked.constructed().size());
+        }
     }
-  }
 }
