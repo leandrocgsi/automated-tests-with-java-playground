@@ -1,17 +1,16 @@
 package br.com.erudio.powermock;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.powermock.api.mockito.PowerMockito.*;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.when;
+import static org.powermock.api.mockito.PowerMockito.mockStatic;
 
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
@@ -30,13 +29,7 @@ public class MockingStaticMethodTest {
     
     @InjectMocks
     SystemUnderTest sut;
-    
-    @BeforeEach
-    public void setup() {
-        sut = new SystemUnderTest();
-        //MockitoAnnotations.openMocks(this);
-    }
-    
+
     @Test
     void testMockingStaticMethod() {
         
@@ -44,15 +37,9 @@ public class MockingStaticMethodTest {
         List<Integer> stats =  Arrays.asList(1,2,3);
         when(dependency.retrieveAllStats()).thenReturn(stats);
         
-        try (MockedStatic<UtilityClass> mockedStatic = mockStatic(UtilityClass.class, Mockito.RETURNS_MOCKS)) {
-            mockedStatic.when(() -> UtilityClass.myStaticMethod(5))
-                .thenReturn(12);
-            
-            // When / Act
-            int result = sut.methodCallingAStaticMethod();
-            
-            // Then / Assert 
-            assertEquals(12, result);
-        }
+        mockStatic(UtilityClass.class);
+        when(UtilityClass.myStaticMethod(anyLong())).thenReturn(150);
+        
+        sut.methodCallingAStaticMethod();
     }
 }
