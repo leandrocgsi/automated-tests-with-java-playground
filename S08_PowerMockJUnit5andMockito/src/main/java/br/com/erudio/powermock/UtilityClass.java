@@ -1,4 +1,4 @@
-package br.com.erudio.powermock.utils;
+package br.com.erudio.powermock;
 
 public class UtilityClass {
     

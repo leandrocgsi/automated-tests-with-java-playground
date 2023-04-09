@@ -3,8 +3,6 @@ package br.com.erudio.powermock;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.erudio.powermock.utils.UtilityClass;
-
 public class SystemUnderTest {
     
     private Dependency dependency;

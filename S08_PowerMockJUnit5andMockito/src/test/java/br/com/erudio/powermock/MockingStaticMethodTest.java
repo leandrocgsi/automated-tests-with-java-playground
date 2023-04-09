@@ -14,8 +14,6 @@ import org.mockito.Mock;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import br.com.erudio.powermock.utils.UtilityClass;
-
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(UtilityClass.class)
 public class MockingStaticMethodTest {
