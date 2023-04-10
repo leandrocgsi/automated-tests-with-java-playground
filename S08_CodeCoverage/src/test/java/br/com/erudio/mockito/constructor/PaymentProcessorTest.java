@@ -15,12 +15,12 @@ class PaymentProcessorTest {
     @Test
     void mockObjectConstruction() {
 
-        // a real object of the PaymentProcessor is returned
+        // A real object of the PaymentProcessor is returned
         System.out.println(new PaymentProcessor().chargeCustomer("42", BigDecimal.valueOf(42)));
 
         try (MockedConstruction<PaymentProcessor> mocked = mockConstruction(PaymentProcessor.class)) {
 
-            // every object creation is returning a mock from now on
+            // Every object creation is returning a mock from now on
             PaymentProcessor paymentProcessor = new PaymentProcessor();
 
             when(paymentProcessor.chargeCustomer(anyString(), any(BigDecimal.class))).thenReturn(BigDecimal.TEN);
@@ -28,7 +28,7 @@ class PaymentProcessorTest {
             assertEquals(BigDecimal.TEN, paymentProcessor.chargeCustomer("42", BigDecimal.valueOf(42)));
         }
 
-        // a real object of the PaymentProcessor is returned
+        // A real object of the PaymentProcessor is returned
         System.out.println(new PaymentProcessor().chargeCustomer("42", BigDecimal.valueOf(42)));
     }
 
@@ -51,9 +51,9 @@ class PaymentProcessorTest {
     @Test
     void mockDifferentObjectConstructionWithAnswer() {
         try (MockedConstruction<PaymentProcessor> mocked = Mockito.mockConstructionWithAnswer(PaymentProcessor.class,
-                // default answer for the first mock
+                // Default answer for the first mock
                 invocation -> new BigDecimal("500.00"),
-                // additional answer for all further mocks
+                // Additional answer for all further mocks
                 invocation -> new BigDecimal("42.00"))) {
 
             PaymentProcessor firstInstance = new PaymentProcessor();
