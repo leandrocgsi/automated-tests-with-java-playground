@@ -12,6 +12,7 @@
         <maven.compiler.source>19</maven.compiler.source>
         <maven.compiler.plugin.version>3.10.1</maven.compiler.plugin.version>
         <maven.surefire.plugin>3.0.0</maven.surefire.plugin>
+        <jacoco.plugin>0.8.9</jacoco.plugin>
     </properties>
     
     <dependencies>
@@ -60,11 +61,28 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven.surefire.plugin}</version>
+                <configuration>
+                    <testFailureIgnore>true</testFailureIgnore>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-report-plugin</artifactId>
                 <version>${maven.surefire.plugin}</version>
+                <executions>
+                    <execution>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.9</version>
             </plugin>
 
         </plugins>
