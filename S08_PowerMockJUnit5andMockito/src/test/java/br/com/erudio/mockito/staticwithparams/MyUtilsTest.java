@@ -1,4 +1,4 @@
-package de.rieckpil.blog.staticmocks;
+package br.com.erudio.mockito.staticwithparams;
 
 import de.rieckpil.blog.staticsmocks.MyUtils;
 import org.junit.jupiter.api.Test;
