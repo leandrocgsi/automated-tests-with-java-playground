@@ -19,7 +19,7 @@ git config --list --show-origin
 
 https://stackoverflow.com/questions/2114111/where-is-the-global-git-config-data-stored
 https://stackoverflow.com/questions/19595067/git-add-commit-and-push-commands-in-one
-
+https://stackoverflow.com/questions/7852148/function-in-bash-to-commit-and-push-in-one-command
 
 
 C:\Program Files\Git\mingw64\etc
