@@ -12,3 +12,29 @@ S10_TestingRepositories/             git acmp 'Testing Repositories Layer'
 S11_TestingServices/                 git acmp 'Testing Services Layer'
 S12_TestingControllers/              git acmp 'Testing Controllers Layer'
 S13_IntegrationTests/                git acmp 'Integration Tests with JUnit 5, Mockito, RESTAssured and TestConatiners'
+
+alias.acmp=!f() { git add -A && git commit -m "$@" && git push; }; f
+
+git config --list --show-origin
+
+https://stackoverflow.com/questions/2114111/where-is-the-global-git-config-data-stored
+https://stackoverflow.com/questions/19595067/git-add-commit-and-push-commands-in-one
+
+
+
+C:\Program Files\Git\mingw64\etc
+
+[http]
+	sslCAInfo = C:/Program Files/Git/mingw64/ssl/certs/ca-bundle.crt
+	sslBackend = openssl
+[diff "astextplain"]
+	textconv = astextplain
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[credential]
+	helper = manager
+[alias]
+    acmp = "!f() { git add -A && git commit -m \"$@\" && git push; }; f"
