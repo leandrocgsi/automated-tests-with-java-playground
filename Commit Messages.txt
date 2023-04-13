@@ -9,6 +9,6 @@ S09B_ParametersAndExceptionHandler/  git acmp 'REST Parameters and Exception Han
 S09C_WorkingWithVerbs/               git acmp 'Working with four HTTP Main Verbs'
 S09D_ConnectingToMySQL/              git acmp 'Connecting to MySQL with Spring Data, JPA and Hibernate'
 S10_TestingRepositories/             git acmp 'Testing Repositories Layer'
-S11_TestingServices/                 git acmp 'Testing Repositories Layer'
-S12_TestingControllers/              git acmp 'Testing Repositories Layer'
+S11_TestingServices/                 git acmp 'Testing Services Layer'
+S12_TestingControllers/              git acmp 'Testing Controllers Layer'
 S13_IntegrationTests/                git acmp 'Integration Tests with JUnit 5, Mockito, RESTAssured and TestConatiners'
