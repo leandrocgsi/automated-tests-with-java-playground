@@ -35,7 +35,7 @@ class PersonRepositoryTest {
     }
     
     // JUnit test for save person operation
-    //@DisplayName("JUnit test for save person operation")
+    @DisplayName("JUnit test for save person operation")
     @Test
     public void givenPersonObject_whenSave_thenReturnSavedPerson(){
 
