@@ -34,24 +34,14 @@ class PersonRepositoryTest {
         );
     }
     
-    // JUnit test for save person operation
     @DisplayName("JUnit test for save person operation")
     @Test
     public void givenPersonObject_whenSave_thenReturnSavedPerson(){
 
-        //given - precondition or setup
-        /*
-            "Leandro",
-                "Costa",
-                "leandro@erudio.com.br",
-                "Uberlândia - Minas Gerais - Brasil",
-                "Male"
-            );
-        */
         // when - action or the behavior that we are going test
         Person savedPerson = personRepository.save(person);
 
-        // then - verify the output
+        
         assertNotNull(savedPerson);
         assertTrue(savedPerson.getId() > 0);
     }
@@ -61,13 +51,6 @@ class PersonRepositoryTest {
     @Test
     public void givenPersonsList_whenFindAll_thenPersonsList(){
         // given - precondition or setup
-        /*Person person = new Person(
-            "Leandro",
-            "Costa",
-            "leandro@erudio.com.br",
-            "Uberlândia - Minas Gerais - Brasil",
-            "Male"
-        );*/
 
         Person person1 = new Person("Johnny","Cash", "jcash@erudio.com.br",
                 "Kingsland - Arkansas - U.S.A.",
@@ -76,10 +59,10 @@ class PersonRepositoryTest {
         personRepository.save(person);
         personRepository.save(person1);
 
-        // when -  action or the behavior that we are going test
+        
         List<Person> personList = personRepository.findAll();
 
-        // then - verify the output
+        
         assertNotNull(personList);
         assertEquals(2, personList.size());
 
@@ -90,19 +73,12 @@ class PersonRepositoryTest {
     @Test
     public void givenPersonObject_whenFindById_thenReturnPersonObject(){
         // given - precondition or setup
-        /*Person person = new Person(
-        "Leandro",
-        "Costa",
-        "leandro@erudio.com.br",
-        "Uberlândia - Minas Gerais - Brasil",
-        "Male"
-        );*/
         personRepository.save(person);
 
-        // when -  action or the behavior that we are going test
+        
         Person recordedPerson = personRepository.findById(person.getId()).get();
 
-        // then - verify the output
+        
         assertNotNull(recordedPerson);
     }
     
@@ -111,19 +87,12 @@ class PersonRepositoryTest {
     @Test
     public void givenPersonEmail_whenFindByEmail_thenReturnPersonObject(){
         // given - precondition or setup
-        /*Person person = new Person(
-        "Leandro",
-        "Costa",
-        "leandro@erudio.com.br",
-        "Uberlândia - Minas Gerais - Brasil",
-        "Male"
-        );*/
         personRepository.save(person);
 
-        // when -  action or the behavior that we are going test
+        
         Person personDB = personRepository.findByEmail(person.getEmail()).get();
 
-        // then - verify the output
+        
         assertNotNull(personDB);
     }
     
@@ -132,22 +101,15 @@ class PersonRepositoryTest {
     @Test
     public void givenPersonObject_whenUpdatePerson_thenReturnUpdatedPerson(){
         // given - precondition or setup
-        /*Person person = new Person(
-        "Leandro",
-        "Costa",
-        "leandro@erudio.com.br",
-        "Uberlândia - Minas Gerais - Brasil",
-        "Male"
-        );*/
         personRepository.save(person);
 
-        // when -  action or the behavior that we are going test
+        
         Person savedPerson = personRepository.findById(person.getId()).get();
         savedPerson.setEmail("leonardo@erudio.com.br");
         savedPerson.setFirstName("Leonardo");
         Person updatedPerson =  personRepository.save(savedPerson);
 
-        // then - verify the output
+        
         assertEquals("leonardo@erudio.com.br", updatedPerson.getEmail());
         assertEquals("Leonardo", updatedPerson.getFirstName());
     }
@@ -158,20 +120,13 @@ class PersonRepositoryTest {
     public void givenPersonObject_whenDelete_thenRemovePerson(){
         
         // given - precondition or setup
-        /*Person person = new Person(
-        "Leandro",
-        "Costa",
-        "leandro@erudio.com.br",
-        "Uberlândia - Minas Gerais - Brasil",
-        "Male"
-        );*/
         personRepository.save(person);
 
-        // when -  action or the behavior that we are going test
+        
         personRepository.deleteById(person.getId());
         Optional<Person> personOptional = personRepository.findById(person.getId());
 
-        // then - verify the output
+        
         assertTrue(personOptional.isEmpty());
     }
     
@@ -181,13 +136,6 @@ class PersonRepositoryTest {
     public void givenFirstNameAndLastName_whenFindByJPQL_thenReturnPersonObject(){
         
         // given - precondition or setup
-        /*Person person = new Person(
-        "Leandro",
-        "Costa",
-        "leandro@erudio.com.br",
-        "Uberlândia - Minas Gerais - Brasil",
-        "Male"
-        );*/
         personRepository.save(person);
         String firstName = "Leandro";
         String lastName = "Costa";
@@ -195,53 +143,30 @@ class PersonRepositoryTest {
         // when -  action or the behaviour that we are going test
         Person savedPerson = personRepository.findByJPQL(firstName, lastName);
 
-        // then - verify the output
+        
         assertNotNull(savedPerson);
     }
     
-    // JUnit test for custom query using JPQL with Named params
     @DisplayName("JUnit test for custom query using JPQL with Named params")
     @Test
     public void givenFirstNameAndLastName_whenFindByJPQLNamedParams_thenReturnPersonObject(){
-        // given - precondition or setup
-        /*Person person = new Person(
-        "Leandro",
-        "Costa",
-        "leandro@erudio.com.br",
-        "Uberlândia - Minas Gerais - Brasil",
-        "Male"
-        );*/
+
         personRepository.save(person);
         String firstName = "Leandro";
         String lastName = "Costa";
 
-        // when -  action or the behaviour that we are going test
         Person savedPerson = personRepository.findByJPQLNamedParams(firstName, lastName);
-
-        // then - verify the output
+        
         assertNotNull(savedPerson);
     }
     
-    // JUnit test for custom query using native SQL with index
     @DisplayName("JUnit test for custom query using native SQL with index")
     @Test
     public void givenFirstNameAndLastName_whenFindByNativeSQL_thenReturnPersonObject(){
-        // given - precondition or setup
-        /*Person person = new Person(
-        "Leandro",
-        "Costa",
-        "leandro@erudio.com.br",
-        "Uberlândia - Minas Gerais - Brasil",
-        "Male"
-        );*/
         personRepository.save(person);
-        // String firstName = "Leandro";
-        // String lastName = "Costa";
 
-        // when -  action or the behavior that we are going test
         Person savedPerson = personRepository.findByNativeSQL(person.getFirstName(), person.getLastName());
-
-        // then - verify the output
+        
         assertNotNull(savedPerson);
     }
     
@@ -250,23 +175,10 @@ class PersonRepositoryTest {
     @Test
     public void givenFirstNameAndLastName_whenFindByNativeSQLNamedParams_thenReturnPersonObject(){
         
-        // given - precondition or setup
-        /*Person person = new Person(
-        "Leandro",
-        "Costa",
-        "leandro@erudio.com.br",
-        "Uberlândia - Minas Gerais - Brasil",
-        "Male"
-        );*/
-        
         personRepository.save(person);
-        // String firstName = "Leandro";
-        // String lastName = "Costa";
-
-        // when -  action or the behavior that we are going test
+        
         Person savedPerson = personRepository.findByNativeSQLNamed(person.getFirstName(), person.getLastName());
 
-        // then - verify the output
         assertNotNull(savedPerson);
     }
 }
