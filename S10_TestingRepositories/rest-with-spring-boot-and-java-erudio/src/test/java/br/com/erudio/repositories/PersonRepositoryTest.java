@@ -125,4 +125,29 @@ class PersonRepositoryTest {
         // then - verify the output
         assertNotNull(personDB);
     }
+    
+    // JUnit test for update person operation
+    @DisplayName("JUnit test for update person operation")
+    @Test
+    public void givenPersonObject_whenUpdatePerson_thenReturnUpdatedPerson(){
+        // given - precondition or setup
+        /*Person person = new Person(
+        "Leandro",
+        "Costa",
+        "leandro@erudio.com.br",
+        "Uberlândia - Minas Gerais - Brasil",
+        "Male"
+        );*/
+        personRepository.save(person);
+
+        // when -  action or the behaviour that we are going test
+        Person savedPerson = personRepository.findById(person.getId()).get();
+        savedPerson.setEmail("leonardo@erudio.com.br");
+        savedPerson.setFirstName("Leonardo");
+        Person updatedPerson =  personRepository.save(savedPerson);
+
+        // then - verify the output
+        assertEquals("leonardo@erudio.com.br", updatedPerson.getEmail());
+        assertEquals("Leonardo", updatedPerson.getFirstName());
+    }
 }
