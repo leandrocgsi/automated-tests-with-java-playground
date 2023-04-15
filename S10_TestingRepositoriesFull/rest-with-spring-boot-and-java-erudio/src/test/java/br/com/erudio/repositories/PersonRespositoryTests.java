@@ -1,6 +1,9 @@
 package br.com.erudio.repositories;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 import java.util.Optional;
@@ -45,7 +48,7 @@ public class PersonRespositoryTests {
         		"Uberlândia - Minas Gerais - Brasil",
         		"Male"
     		);
-        // when - action or the behaviour that we are going test
+        // when - action or the behavior that we are going test
         Person savedPerson = personRepository.save(person);
 
         // then - verify the output
@@ -74,13 +77,12 @@ public class PersonRespositoryTests {
         personRepository.save(person);
         personRepository.save(person1);
 
-        // when -  action or the behaviour that we are going test
+        // when -  action or the behavior that we are going test
         List<Person> personList = personRepository.findAll();
 
         // then - verify the output
-        assertThat(personList).isNotNull();
-        assertThat(personList.size()).isEqualTo(2);
-
+        assertNotNull(personList);
+        assertEquals(2, personList.size());
     }
 
     // JUnit test for get person by id operation
@@ -97,11 +99,11 @@ public class PersonRespositoryTests {
 		);*/
         personRepository.save(person);
 
-        // when -  action or the behaviour that we are going test
+        // when -  action or the behavior that we are going test
         Person personDB = personRepository.findById(person.getId()).get();
 
         // then - verify the output
-        assertThat(personDB).isNotNull();
+        assertNotNull(personDB);
     }
 
     // JUnit test for get person by email operation
@@ -118,11 +120,11 @@ public class PersonRespositoryTests {
 		);*/
         personRepository.save(person);
 
-        // when -  action or the behaviour that we are going test
+        // when -  action or the behavior that we are going test
         Person personDB = personRepository.findByEmail(person.getEmail()).get();
 
         // then - verify the output
-        assertThat(personDB).isNotNull();
+        assertNotNull(personDB);
     }
 
     // JUnit test for update person operation
@@ -139,15 +141,15 @@ public class PersonRespositoryTests {
 		);*/
         personRepository.save(person);
 
-        // when -  action or the behaviour that we are going test
+        // when -  action or the behavior that we are going test
         Person savedPerson = personRepository.findById(person.getId()).get();
         savedPerson.setEmail("ram@gmail.com");
         savedPerson.setFirstName("Ram");
         Person updatedPerson =  personRepository.save(savedPerson);
 
         // then - verify the output
-        assertThat(updatedPerson.getEmail()).isEqualTo("ram@gmail.com");
-        assertThat(updatedPerson.getFirstName()).isEqualTo("Ram");
+        assertEquals("ram@gmail.com", updatedPerson.getEmail());
+        assertEquals("Ram", updatedPerson.getFirstName());
     }
 
     // JUnit test for delete person operation
@@ -164,7 +166,7 @@ public class PersonRespositoryTests {
 		);*/
         personRepository.save(person);
 
-        // when -  action or the behaviour that we are going test
+        // when -  action or the behavior that we are going test
         personRepository.deleteById(person.getId());
         Optional<Person> personOptional = personRepository.findById(person.getId());
 
@@ -188,7 +190,7 @@ public class PersonRespositoryTests {
         String firstName = "Leandro";
         String lastName = "Costa";
 
-        // when -  action or the behaviour that we are going test
+        // when -  action or the behavior that we are going test
         Person savedPerson = personRepository.findByJPQL(firstName, lastName);
 
         // then - verify the output
@@ -211,7 +213,7 @@ public class PersonRespositoryTests {
         String firstName = "Leandro";
         String lastName = "Costa";
 
-        // when -  action or the behaviour that we are going test
+        // when -  action or the behavior that we are going test
         Person savedPerson = personRepository.findByJPQLNamedParams(firstName, lastName);
 
         // then - verify the output
@@ -234,7 +236,7 @@ public class PersonRespositoryTests {
         // String firstName = "Leandro";
         // String lastName = "Costa";
 
-        // when -  action or the behaviour that we are going test
+        // when -  action or the behavior that we are going test
         Person savedPerson = personRepository.findByNativeSQL(person.getFirstName(), person.getLastName());
 
         // then - verify the output
@@ -257,7 +259,7 @@ public class PersonRespositoryTests {
         // String firstName = "Leandro";
         // String lastName = "Costa";
 
-        // when -  action or the behaviour that we are going test
+        // when -  action or the behavior that we are going test
         Person savedPerson = personRepository.findByNativeSQLNamed(person.getFirstName(), person.getLastName());
 
         // then - verify the output
