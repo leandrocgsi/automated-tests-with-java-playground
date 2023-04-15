@@ -1,6 +1,6 @@
 package br.com.erudio.repositories;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -49,8 +49,8 @@ public class PersonRespositoryTests {
         Person savedPerson = personRepository.save(person);
 
         // then - verify the output
-        assertThat(savedPerson).isNotNull();
-        assertThat(savedPerson.getId()).isGreaterThan(0);
+        assertNotNull(savedPerson);
+        assertTrue(savedPerson.getId() > 0);
     }
 
 
@@ -192,7 +192,7 @@ public class PersonRespositoryTests {
         Person savedPerson = personRepository.findByJPQL(firstName, lastName);
 
         // then - verify the output
-        assertThat(savedPerson).isNotNull();
+        assertNotNull(savedPerson);
     }
 
     // JUnit test for custom query using JPQL with Named params
@@ -215,7 +215,7 @@ public class PersonRespositoryTests {
         Person savedPerson = personRepository.findByJPQLNamedParams(firstName, lastName);
 
         // then - verify the output
-        assertThat(savedPerson).isNotNull();
+        assertNotNull(savedPerson);
     }
 
     // JUnit test for custom query using native SQL with index
@@ -238,7 +238,7 @@ public class PersonRespositoryTests {
         Person savedPerson = personRepository.findByNativeSQL(person.getFirstName(), person.getLastName());
 
         // then - verify the output
-        assertThat(savedPerson).isNotNull();
+        assertNotNull(savedPerson);
     }
 
     // JUnit test for custom query using native SQL with named params
@@ -261,7 +261,7 @@ public class PersonRespositoryTests {
         Person savedPerson = personRepository.findByNativeSQLNamed(person.getFirstName(), person.getLastName());
 
         // then - verify the output
-        assertThat(savedPerson).isNotNull();
+        assertNotNull(savedPerson);
     }
 
 }
