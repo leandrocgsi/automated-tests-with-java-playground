@@ -56,7 +56,7 @@ class PersonRepositoryTest {
         assertTrue(savedPerson.getId() > 0);
     }
 
- // JUnit test for get all persons operation
+    // JUnit test for get all persons operation
     @DisplayName("JUnit test for get all persons operation")
     @Test
     public void givenPersonsList_whenFindAll_thenPersonsList(){
@@ -69,8 +69,8 @@ class PersonRepositoryTest {
             "Male"
         );*/
 
-        Person person1 = new Person("Ayrton","Senna", "senna@erudio.com.br",
-                "Uberlândia - Minas Gerais - Brasil",
+        Person person1 = new Person("Johnny","Cash", "jcash@erudio.com.br",
+                "Kingsland - Arkansas - U.S.A.",
                 "Male");
 
         personRepository.save(person);
@@ -83,5 +83,26 @@ class PersonRepositoryTest {
         assertNotNull(personList);
         assertEquals(2, personList.size());
 
+    }
+    
+    // JUnit test for get person by id operation
+    @DisplayName("JUnit test for get person by id operation")
+    @Test
+    public void givenPersonObject_whenFindById_thenReturnPersonObject(){
+        // given - precondition or setup
+        /*Person person = new Person(
+        "Leandro",
+        "Costa",
+        "leandro@erudio.com.br",
+        "Uberlândia - Minas Gerais - Brasil",
+        "Male"
+        );*/
+        personRepository.save(person);
+
+        // when -  action or the behaviour that we are going test
+        Person recordedPerson = personRepository.findById(person.getId()).get();
+
+        // then - verify the output
+        assertNotNull(recordedPerson);
     }
 }
