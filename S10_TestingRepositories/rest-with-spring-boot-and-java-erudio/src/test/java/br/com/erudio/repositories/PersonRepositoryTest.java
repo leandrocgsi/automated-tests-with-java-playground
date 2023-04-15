@@ -200,7 +200,7 @@ class PersonRepositoryTest {
         assertNotNull(savedPerson);
     }
     
- // JUnit test for custom query using JPQL with Named params
+    // JUnit test for custom query using JPQL with Named params
     @DisplayName("JUnit test for custom query using JPQL with Named params")
     @Test
     public void givenFirstNameAndLastName_whenFindByJPQLNamedParams_thenReturnPersonObject(){
@@ -220,6 +220,6 @@ class PersonRepositoryTest {
         Person savedPerson = personRepository.findByJPQLNamedParams(firstName, lastName);
 
         // then - verify the output
-        assertThat(savedPerson).isNotNull();
+        assertNotNull(savedPerson);
     }
 }
