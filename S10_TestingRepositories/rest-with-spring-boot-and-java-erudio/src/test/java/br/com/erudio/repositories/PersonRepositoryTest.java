@@ -1,6 +1,5 @@
 package br.com.erudio.repositories;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -104,5 +103,26 @@ class PersonRepositoryTest {
 
         // then - verify the output
         assertNotNull(recordedPerson);
+    }
+    
+    // JUnit test for get person by email operation
+    @DisplayName("JUnit test for get person by email operation")
+    @Test
+    public void givenPersonEmail_whenFindByEmail_thenReturnPersonObject(){
+        // given - precondition or setup
+        /*Person person = new Person(
+        "Leandro",
+        "Costa",
+        "leandro@erudio.com.br",
+        "Uberlândia - Minas Gerais - Brasil",
+        "Male"
+        );*/
+        personRepository.save(person);
+
+        // when -  action or the behaviour that we are going test
+        Person personDB = personRepository.findByEmail(person.getEmail()).get();
+
+        // then - verify the output
+        assertNotNull(personDB);
     }
 }
