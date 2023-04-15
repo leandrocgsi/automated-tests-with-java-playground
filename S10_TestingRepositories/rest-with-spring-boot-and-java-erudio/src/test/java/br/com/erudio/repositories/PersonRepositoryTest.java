@@ -37,20 +37,16 @@ class PersonRepositoryTest {
     @DisplayName("JUnit test for save person operation")
     @Test
     public void givenPersonObject_whenSave_thenReturnSavedPerson(){
-
-        // when - action or the behavior that we are going test
+        
         Person savedPerson = personRepository.save(person);
-
         
         assertNotNull(savedPerson);
         assertTrue(savedPerson.getId() > 0);
     }
 
-    // JUnit test for get all persons operation
     @DisplayName("JUnit test for get all persons operation")
     @Test
     public void givenPersonsList_whenFindAll_thenPersonsList(){
-        // given - precondition or setup
 
         Person person1 = new Person("Johnny","Cash", "jcash@erudio.com.br",
                 "Kingsland - Arkansas - U.S.A.",
@@ -58,27 +54,22 @@ class PersonRepositoryTest {
 
         personRepository.save(person);
         personRepository.save(person1);
-
         
         List<Person> personList = personRepository.findAll();
-
         
         assertNotNull(personList);
         assertEquals(2, personList.size());
-
     }
     
     // JUnit test for get person by id operation
     @DisplayName("JUnit test for get person by id operation")
     @Test
     public void givenPersonObject_whenFindById_thenReturnPersonObject(){
-        // given - precondition or setup
+
         personRepository.save(person);
 
-        
         Person recordedPerson = personRepository.findById(person.getId()).get();
 
-        
         assertNotNull(recordedPerson);
     }
     
@@ -86,13 +77,11 @@ class PersonRepositoryTest {
     @DisplayName("JUnit test for get person by email operation")
     @Test
     public void givenPersonEmail_whenFindByEmail_thenReturnPersonObject(){
-        // given - precondition or setup
+        
         personRepository.save(person);
 
-        
         Person personDB = personRepository.findByEmail(person.getEmail()).get();
 
-        
         assertNotNull(personDB);
     }
     
@@ -100,16 +89,14 @@ class PersonRepositoryTest {
     @DisplayName("JUnit test for update person operation")
     @Test
     public void givenPersonObject_whenUpdatePerson_thenReturnUpdatedPerson(){
-        // given - precondition or setup
+        
         personRepository.save(person);
 
-        
         Person savedPerson = personRepository.findById(person.getId()).get();
         savedPerson.setEmail("leonardo@erudio.com.br");
         savedPerson.setFirstName("Leonardo");
         Person updatedPerson =  personRepository.save(savedPerson);
 
-        
         assertEquals("leonardo@erudio.com.br", updatedPerson.getEmail());
         assertEquals("Leonardo", updatedPerson.getFirstName());
     }
@@ -118,32 +105,25 @@ class PersonRepositoryTest {
     @DisplayName("JUnit test for delete person operation")
     @Test
     public void givenPersonObject_whenDelete_thenRemovePerson(){
-        
-        // given - precondition or setup
+
         personRepository.save(person);
 
-        
         personRepository.deleteById(person.getId());
         Optional<Person> personOptional = personRepository.findById(person.getId());
 
-        
         assertTrue(personOptional.isEmpty());
     }
     
-    // JUnit test for custom query using JPQL with index
     @DisplayName("JUnit test for custom query using JPQL with index")
     @Test
     public void givenFirstNameAndLastName_whenFindByJPQL_thenReturnPersonObject(){
         
-        // given - precondition or setup
         personRepository.save(person);
         String firstName = "Leandro";
         String lastName = "Costa";
 
-        // when -  action or the behaviour that we are going test
         Person savedPerson = personRepository.findByJPQL(firstName, lastName);
 
-        
         assertNotNull(savedPerson);
     }
     
@@ -170,7 +150,6 @@ class PersonRepositoryTest {
         assertNotNull(savedPerson);
     }
     
-    // JUnit test for custom query using native SQL with named params
     @DisplayName("JUnit test for custom query using native SQL with named params")
     @Test
     public void givenFirstNameAndLastName_whenFindByNativeSQLNamedParams_thenReturnPersonObject(){
