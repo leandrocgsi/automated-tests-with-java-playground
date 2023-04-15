@@ -61,7 +61,6 @@ class PersonRepositoryTest {
         assertEquals(2, personList.size());
     }
     
-    // JUnit test for get person by id operation
     @DisplayName("JUnit test for get person by id operation")
     @Test
     public void givenPersonObject_whenFindById_thenReturnPersonObject(){
@@ -73,7 +72,6 @@ class PersonRepositoryTest {
         assertNotNull(recordedPerson);
     }
     
-    // JUnit test for get person by email operation
     @DisplayName("JUnit test for get person by email operation")
     @Test
     public void givenPersonEmail_whenFindByEmail_thenReturnPersonObject(){
@@ -85,7 +83,6 @@ class PersonRepositoryTest {
         assertNotNull(personDB);
     }
     
-    // JUnit test for update person operation
     @DisplayName("JUnit test for update person operation")
     @Test
     public void givenPersonObject_whenUpdatePerson_thenReturnUpdatedPerson(){
@@ -101,7 +98,6 @@ class PersonRepositoryTest {
         assertEquals("Leonardo", updatedPerson.getFirstName());
     }
     
-    // JUnit test for delete person operation
     @DisplayName("JUnit test for delete person operation")
     @Test
     public void givenPersonObject_whenDelete_thenRemovePerson(){
