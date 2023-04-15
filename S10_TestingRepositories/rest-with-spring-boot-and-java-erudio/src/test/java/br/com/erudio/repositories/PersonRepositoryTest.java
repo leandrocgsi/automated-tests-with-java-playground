@@ -1,5 +1,6 @@
 package br.com.erudio.repositories;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -197,5 +198,28 @@ class PersonRepositoryTest {
 
         // then - verify the output
         assertNotNull(savedPerson);
+    }
+    
+ // JUnit test for custom query using JPQL with Named params
+    @DisplayName("JUnit test for custom query using JPQL with Named params")
+    @Test
+    public void givenFirstNameAndLastName_whenFindByJPQLNamedParams_thenReturnPersonObject(){
+        // given - precondition or setup
+        /*Person person = new Person(
+        "Leandro",
+        "Costa",
+        "leandro@erudio.com.br",
+        "Uberlândia - Minas Gerais - Brasil",
+        "Male"
+        );*/
+        personRepository.save(person);
+        String firstName = "Leandro";
+        String lastName = "Costa";
+
+        // when -  action or the behaviour that we are going test
+        Person savedPerson = personRepository.findByJPQLNamedParams(firstName, lastName);
+
+        // then - verify the output
+        assertThat(savedPerson).isNotNull();
     }
 }
