@@ -245,4 +245,28 @@ class PersonRepositoryTest {
         // then - verify the output
         assertNotNull(savedPerson);
     }
+    
+    // JUnit test for custom query using native SQL with named params
+    @DisplayName("JUnit test for custom query using native SQL with named params")
+    @Test
+    public void givenFirstNameAndLastName_whenFindByNativeSQLNamedParams_thenReturnPersonObject(){
+        // given - precondition or setup
+        /*Person person = new Person(
+        "Leandro",
+        "Costa",
+        "leandro@erudio.com.br",
+        "Uberlândia - Minas Gerais - Brasil",
+        "Male"
+        );*/
+        
+        personRepository.save(person);
+        // String firstName = "Leandro";
+        // String lastName = "Costa";
+
+        // when -  action or the behavior that we are going test
+        Person savedPerson = personRepository.findByNativeSQLNamed(person.getFirstName(), person.getLastName());
+
+        // then - verify the output
+        assertNotNull(savedPerson);
+    }
 }
