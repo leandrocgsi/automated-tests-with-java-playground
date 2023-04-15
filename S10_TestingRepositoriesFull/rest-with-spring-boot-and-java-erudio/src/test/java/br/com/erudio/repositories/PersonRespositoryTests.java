@@ -27,12 +27,12 @@ public class PersonRespositoryTests {
     @BeforeEach
     public void setup(){
         person = new Person(
-    		"Leandro",
-    		"Costa",
-    		"leandro@erudio.com.br",
-    		"Uberlândia - Minas Gerais - Brasil",
-    		"Male"
-		);
+            "Leandro",
+            "Costa",
+            "leandro@erudio.com.br",
+            "Uberlândia - Minas Gerais - Brasil",
+            "Male"
+        );
     }
     
     // JUnit test for save person operation
@@ -42,12 +42,12 @@ public class PersonRespositoryTests {
 
         //given - precondition or setup
         Person person = new Person(
-        		"Leandro",
-        		"Costa",
-        		"leandro@erudio.com.br",
-        		"Uberlândia - Minas Gerais - Brasil",
-        		"Male"
-    		);
+                "Leandro",
+                "Costa",
+                "leandro@erudio.com.br",
+                "Uberlândia - Minas Gerais - Brasil",
+                "Male"
+            );
         // when - action or the behavior that we are going test
         Person savedPerson = personRepository.save(person);
 
@@ -62,17 +62,17 @@ public class PersonRespositoryTests {
     @Test
     public void givenPersonsList_whenFindAll_thenPersonsList(){
         // given - precondition or setup
-		/*Person person = new Person(
-			"Leandro",
-			"Costa",
-			"leandro@erudio.com.br",
-			"Uberlândia - Minas Gerais - Brasil",
-			"Male"
-		);*/
+        /*Person person = new Person(
+            "Leandro",
+            "Costa",
+            "leandro@erudio.com.br",
+            "Uberlândia - Minas Gerais - Brasil",
+            "Male"
+        );*/
 
         Person person1 = new Person("Ayrton","Senna", "senna@erudio.com.br",
-    			"Uberlândia - Minas Gerais - Brasil",
-    			"Male");
+                "Uberlândia - Minas Gerais - Brasil",
+                "Male");
 
         personRepository.save(person);
         personRepository.save(person1);
@@ -90,13 +90,13 @@ public class PersonRespositoryTests {
     @Test
     public void givenPersonObject_whenFindById_thenReturnPersonObject(){
         // given - precondition or setup
-		/*Person person = new Person(
-		"Leandro",
-		"Costa",
-		"leandro@erudio.com.br",
-		"Uberlândia - Minas Gerais - Brasil",
-		"Male"
-		);*/
+        /*Person person = new Person(
+        "Leandro",
+        "Costa",
+        "leandro@erudio.com.br",
+        "Uberlândia - Minas Gerais - Brasil",
+        "Male"
+        );*/
         personRepository.save(person);
 
         // when -  action or the behavior that we are going test
@@ -111,13 +111,13 @@ public class PersonRespositoryTests {
     @Test
     public void givenPersonEmail_whenFindByEmail_thenReturnPersonObject(){
         // given - precondition or setup
-		/*Person person = new Person(
-		"Leandro",
-		"Costa",
-		"leandro@erudio.com.br",
-		"Uberlândia - Minas Gerais - Brasil",
-		"Male"
-		);*/
+        /*Person person = new Person(
+        "Leandro",
+        "Costa",
+        "leandro@erudio.com.br",
+        "Uberlândia - Minas Gerais - Brasil",
+        "Male"
+        );*/
         personRepository.save(person);
 
         // when -  action or the behavior that we are going test
@@ -132,13 +132,13 @@ public class PersonRespositoryTests {
     @Test
     public void givenPersonObject_whenUpdatePerson_thenReturnUpdatedPerson(){
         // given - precondition or setup
-		/*Person person = new Person(
-		"Leandro",
-		"Costa",
-		"leandro@erudio.com.br",
-		"Uberlândia - Minas Gerais - Brasil",
-		"Male"
-		);*/
+        /*Person person = new Person(
+        "Leandro",
+        "Costa",
+        "leandro@erudio.com.br",
+        "Uberlândia - Minas Gerais - Brasil",
+        "Male"
+        );*/
         personRepository.save(person);
 
         // when -  action or the behavior that we are going test
@@ -157,13 +157,13 @@ public class PersonRespositoryTests {
     @Test
     public void givenPersonObject_whenDelete_thenRemovePerson(){
         // given - precondition or setup
-		/*Person person = new Person(
-		"Leandro",
-		"Costa",
-		"leandro@erudio.com.br",
-		"Uberlândia - Minas Gerais - Brasil",
-		"Male"
-		);*/
+        /*Person person = new Person(
+        "Leandro",
+        "Costa",
+        "leandro@erudio.com.br",
+        "Uberlândia - Minas Gerais - Brasil",
+        "Male"
+        );*/
         personRepository.save(person);
 
         // when -  action or the behavior that we are going test
@@ -179,13 +179,13 @@ public class PersonRespositoryTests {
     @Test
     public void givenFirstNameAndLastName_whenFindByJPQL_thenReturnPersonObject(){
         // given - precondition or setup
-		/*Person person = new Person(
-		"Leandro",
-		"Costa",
-		"leandro@erudio.com.br",
-		"Uberlândia - Minas Gerais - Brasil",
-		"Male"
-		);*/
+        /*Person person = new Person(
+        "Leandro",
+        "Costa",
+        "leandro@erudio.com.br",
+        "Uberlândia - Minas Gerais - Brasil",
+        "Male"
+        );*/
         personRepository.save(person);
         String firstName = "Leandro";
         String lastName = "Costa";
@@ -202,13 +202,13 @@ public class PersonRespositoryTests {
     @Test
     public void givenFirstNameAndLastName_whenFindByJPQLNamedParams_thenReturnPersonObject(){
         // given - precondition or setup
-		/*Person person = new Person(
-		"Leandro",
-		"Costa",
-		"leandro@erudio.com.br",
-		"Uberlândia - Minas Gerais - Brasil",
-		"Male"
-		);*/
+        /*Person person = new Person(
+        "Leandro",
+        "Costa",
+        "leandro@erudio.com.br",
+        "Uberlândia - Minas Gerais - Brasil",
+        "Male"
+        );*/
         personRepository.save(person);
         String firstName = "Leandro";
         String lastName = "Costa";
@@ -225,13 +225,13 @@ public class PersonRespositoryTests {
     @Test
     public void givenFirstNameAndLastName_whenFindByNativeSQL_thenReturnPersonObject(){
         // given - precondition or setup
-		/*Person person = new Person(
-		"Leandro",
-		"Costa",
-		"leandro@erudio.com.br",
-		"Uberlândia - Minas Gerais - Brasil",
-		"Male"
-		);*/
+        /*Person person = new Person(
+        "Leandro",
+        "Costa",
+        "leandro@erudio.com.br",
+        "Uberlândia - Minas Gerais - Brasil",
+        "Male"
+        );*/
         personRepository.save(person);
         // String firstName = "Leandro";
         // String lastName = "Costa";
@@ -248,13 +248,13 @@ public class PersonRespositoryTests {
     @Test
     public void givenFirstNameAndLastName_whenFindByNativeSQLNamedParams_thenReturnPersonObject(){
         // given - precondition or setup
-		/*Person person = new Person(
-		"Leandro",
-		"Costa",
-		"leandro@erudio.com.br",
-		"Uberlândia - Minas Gerais - Brasil",
-		"Male"
-		);*/
+        /*Person person = new Person(
+        "Leandro",
+        "Costa",
+        "leandro@erudio.com.br",
+        "Uberlândia - Minas Gerais - Brasil",
+        "Male"
+        );*/
         personRepository.save(person);
         // String firstName = "Leandro";
         // String lastName = "Costa";
