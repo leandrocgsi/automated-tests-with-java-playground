@@ -1,10 +1,12 @@
 package br.com.erudio.repositories;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -98,7 +100,7 @@ class PersonRepositoryTest {
         );*/
         personRepository.save(person);
 
-        // when -  action or the behaviour that we are going test
+        // when -  action or the behavior that we are going test
         Person recordedPerson = personRepository.findById(person.getId()).get();
 
         // then - verify the output
@@ -119,7 +121,7 @@ class PersonRepositoryTest {
         );*/
         personRepository.save(person);
 
-        // when -  action or the behaviour that we are going test
+        // when -  action or the behavior that we are going test
         Person personDB = personRepository.findByEmail(person.getEmail()).get();
 
         // then - verify the output
@@ -140,7 +142,7 @@ class PersonRepositoryTest {
         );*/
         personRepository.save(person);
 
-        // when -  action or the behaviour that we are going test
+        // when -  action or the behavior that we are going test
         Person savedPerson = personRepository.findById(person.getId()).get();
         savedPerson.setEmail("leonardo@erudio.com.br");
         savedPerson.setFirstName("Leonardo");
@@ -151,10 +153,11 @@ class PersonRepositoryTest {
         assertEquals("Leonardo", updatedPerson.getFirstName());
     }
     
- // JUnit test for delete person operation
+    // JUnit test for delete person operation
     @DisplayName("JUnit test for delete person operation")
     @Test
     public void givenPersonObject_whenDelete_thenRemovePerson(){
+        
         // given - precondition or setup
         /*Person person = new Person(
         "Leandro",
@@ -165,11 +168,11 @@ class PersonRepositoryTest {
         );*/
         personRepository.save(person);
 
-        // when -  action or the behaviour that we are going test
+        // when -  action or the behavior that we are going test
         personRepository.deleteById(person.getId());
         Optional<Person> personOptional = personRepository.findById(person.getId());
 
         // then - verify the output
-        assertThat(personOptional).isEmpty();
+        assertTrue(personOptional.isEmpty());
     }
 }
