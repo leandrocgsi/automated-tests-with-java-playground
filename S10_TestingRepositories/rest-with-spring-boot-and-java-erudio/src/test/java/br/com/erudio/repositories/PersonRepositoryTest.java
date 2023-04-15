@@ -150,4 +150,26 @@ class PersonRepositoryTest {
         assertEquals("leonardo@erudio.com.br", updatedPerson.getEmail());
         assertEquals("Leonardo", updatedPerson.getFirstName());
     }
+    
+ // JUnit test for delete person operation
+    @DisplayName("JUnit test for delete person operation")
+    @Test
+    public void givenPersonObject_whenDelete_thenRemovePerson(){
+        // given - precondition or setup
+        /*Person person = new Person(
+        "Leandro",
+        "Costa",
+        "leandro@erudio.com.br",
+        "Uberlândia - Minas Gerais - Brasil",
+        "Male"
+        );*/
+        personRepository.save(person);
+
+        // when -  action or the behaviour that we are going test
+        personRepository.deleteById(person.getId());
+        Optional<Person> personOptional = personRepository.findById(person.getId());
+
+        // then - verify the output
+        assertThat(personOptional).isEmpty();
+    }
 }
