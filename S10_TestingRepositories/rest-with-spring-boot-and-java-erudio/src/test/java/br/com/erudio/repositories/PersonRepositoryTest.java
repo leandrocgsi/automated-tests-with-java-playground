@@ -1,6 +1,7 @@
 package br.com.erudio.repositories;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -75,12 +76,12 @@ class PersonRepositoryTest {
         personRepository.save(person);
         personRepository.save(person1);
 
-        // when -  action or the behaviour that we are going test
+        // when -  action or the behavior that we are going test
         List<Person> personList = personRepository.findAll();
 
         // then - verify the output
-        assertThat(personList).isNotNull();
-        assertThat(personList.size()).isEqualTo(2);
+        assertNotNull(personList);
+        assertEquals(2, personList.size());
 
     }
 }
