@@ -1,6 +1,5 @@
 package br.com.erudio.repositories;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -171,7 +170,7 @@ public class PersonRespositoryTests {
         Optional<Person> personOptional = personRepository.findById(person.getId());
 
         // then - verify the output
-        assertThat(personOptional).isEmpty();
+        assertTrue(personOptional.isEmpty());
     }
 
     // JUnit test for custom query using JPQL with index
