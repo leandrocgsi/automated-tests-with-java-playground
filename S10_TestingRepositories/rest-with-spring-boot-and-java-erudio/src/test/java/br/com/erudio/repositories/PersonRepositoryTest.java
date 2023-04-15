@@ -250,6 +250,7 @@ class PersonRepositoryTest {
     @DisplayName("JUnit test for custom query using native SQL with named params")
     @Test
     public void givenFirstNameAndLastName_whenFindByNativeSQLNamedParams_thenReturnPersonObject(){
+        
         // given - precondition or setup
         /*Person person = new Person(
         "Leandro",
