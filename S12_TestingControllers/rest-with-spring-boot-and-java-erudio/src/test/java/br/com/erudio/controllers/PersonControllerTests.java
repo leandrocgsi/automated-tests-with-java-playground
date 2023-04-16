@@ -27,6 +27,7 @@ import org.springframework.test.web.servlet.ResultActions;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import br.com.erudio.exceptions.ResourceNotFoundException;
 import br.com.erudio.model.Person;
 import br.com.erudio.services.PersonServices;
 
@@ -112,7 +113,7 @@ public class PersonControllerTests {
     public void givenPersonId_whenGetPersonById_thenReturnPersonObject() throws Exception{
         // given - precondition or setup
         long personId = 1L;
-        given(service.findById(personId)).willReturn(Optional.of(person));
+        given(service.findById(personId)).willReturn(person);
 
         // when -  action or the behavior that we are going test
         ResultActions response = mockMvc.perform(get("/person/{id}", personId));
@@ -133,7 +134,7 @@ public class PersonControllerTests {
         // given - precondition or setup
         long personId = 1L;
         
-        given(service.findById(personId)).willReturn(Optional.empty());
+        given(service.findById(personId)).willThrow(ResourceNotFoundException.class);
 
         // when -  action or the behavior that we are going test
         ResultActions response = mockMvc.perform(get("/person/{id}", personId));
@@ -160,7 +161,7 @@ public class PersonControllerTests {
                 "Uberlândia - Minas Gerais - Brasil",
                 "Male"
             );
-        given(service.findById(personId)).willReturn(Optional.of(savedPerson));
+        given(service.findById(personId)).willReturn(savedPerson);
         given(service.update(any(Person.class)))
                 .willAnswer((invocation)-> invocation.getArgument(0));
 
@@ -193,7 +194,7 @@ public class PersonControllerTests {
                 "Male"
             );
         //given(service.findById(personId)).willReturn(Optional.empty());
-        given(service.findById(personId)).willReturn(Optional.of(savedPerson));
+        given(service.findById(personId)).willReturn(savedPerson);
         //when(service.findById(anyLong())).thenThrow(new ResourceNotFoundException("No records found for this ID!"));
         given(service.update(any(Person.class)))
                 .willAnswer((invocation)-> invocation.getArgument(1));
@@ -208,7 +209,7 @@ public class PersonControllerTests {
                 .andDo(print());
     }
 
-// JUnit test for delete person REST API
+    // JUnit test for delete person REST API
     @Test
     public void givenPersonId_whenDeletePerson_thenReturn200() throws Exception{
         // given - precondition or setup
