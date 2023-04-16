@@ -26,12 +26,12 @@ public class PersonServices {
         return repository.findAll();
     }
 
-    public Optional<Person> findById(Long id) {
+    public Person findById(Long id) {
         
         logger.info("Finding one person!");
         
-        return Optional.ofNullable(repository.findById(id)
-            .orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!")));
+        return repository.findById(id)
+            .orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
     }
     
     public Person create(Person person) {
