@@ -153,16 +153,16 @@ public class PersonServiceTests {
         // given - precondition or setup
         given(repository.findById(1L)).willReturn(Optional.of(person));
         
-        person.setEmail("rstallman@erudio.com.br");
-        person.setFirstName("Richard");
+        person.setEmail("leonardo@erudio.com.br");
+        person.setFirstName("Leonardo");
         
         given(repository.save(person)).willReturn(person);
         // when -  action or the behavior that we are going test
         Person updatedPerson = service.update(person);
 
         // then - verify the output
-        assertEquals("rstallman@erudio.com.br", updatedPerson.getEmail());
-        assertEquals("Richard", updatedPerson.getFirstName());
+        assertEquals("leonardo@erudio.com.br", updatedPerson.getEmail());
+        assertEquals("Leonardo", updatedPerson.getFirstName());
     }
 
     // JUnit test for deletePerson method
