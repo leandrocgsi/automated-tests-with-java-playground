@@ -121,15 +121,6 @@ public class PersonServiceTests {
     @Test
     public void givenEmptyPersonsList_whenGetAllPersons_thenReturnEmptyPersonsList(){
         // given - precondition or setup
-
-        Person person1 = new Person(
-                "Ayrton",
-                "Senna",
-                "senna@erudio.com.br",
-                "Some Place in Brasil",
-                "Male"
-            );
-
         given(repository.findAll()).willReturn(Collections.emptyList());
 
         // when -  action or the behavior that we are going test
@@ -151,7 +142,7 @@ public class PersonServiceTests {
         Optional<Person> savedPerson = service.findById(person.getId());
 
         // then
-        assertThat(savedPerson).isNotNull();
+        assertNotNull(savedPerson);
 
     }
 
