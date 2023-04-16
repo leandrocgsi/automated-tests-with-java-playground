@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -41,17 +42,24 @@ public class PersonControllerTests {
     @Autowired
     private ObjectMapper objectMapper;
 
+    private Person person;
+
+    @BeforeEach
+    public void setup(){
+        person = new Person(
+            1L,
+            "Leandro",
+            "Costa",
+            "leandro@erudio.com.br",
+            "Uberlândia - Minas Gerais - Brasil",
+            "Male"
+        );
+    }
+
     @Test
     public void givenPersonObject_whenCreatePerson_thenReturnSavedPerson() throws Exception{
 
         // given - precondition or setup
-        Person person = new Person(
-                "Leandro",
-                "Costa",
-                "leandro@erudio.com.br",
-                "Uberlândia - Minas Gerais - Brasil",
-                "Male"
-            );
         given(service.create(any(Person.class)))
                 .willAnswer((invocation)-> invocation.getArgument(0));
 
@@ -77,14 +85,7 @@ public class PersonControllerTests {
     public void givenListOfPersons_whenGetAllPersons_thenReturnPersonsList() throws Exception{
         // given - precondition or setup
         List<Person> listOfPersons = new ArrayList<>();
-        listOfPersons.add(new Person(
-                1L,
-                "Leandro",
-                "Costa",
-                "leandro@erudio.com.br",
-                "Uberlândia - Minas Gerais - Brasil",
-                "Male"
-            ));
+        listOfPersons.add(person);
         listOfPersons.add(new Person(
                 2L,
                 "Leonardo",
@@ -112,14 +113,6 @@ public class PersonControllerTests {
     public void givenPersonId_whenGetPersonById_thenReturnPersonObject() throws Exception{
         // given - precondition or setup
         long personId = 1L;
-        var person = new Person(
-                1L,
-                "Leandro",
-                "Costa",
-                "leandro@erudio.com.br",
-                "Uberlândia - Minas Gerais - Brasil",
-                "Male"
-            );
         given(service.findById(personId)).willReturn(Optional.of(person));
 
         // when -  action or the behavior that we are going test
@@ -157,14 +150,8 @@ public class PersonControllerTests {
     public void givenUpdatedPerson_whenUpdatePerson_thenReturnUpdatePersonObject() throws Exception{
         // given - precondition or setup
         long personId = 1L;
-        Person savedPerson = new Person(
-                1L,
-                "Leandro",
-                "Costa",
-                "leandro@erudio.com.br",
-                "Uberlândia - Minas Gerais - Brasil",
-                "Male"
-            );
+        Person savedPerson = person;
+        savedPerson.setId(1L);
 
         Person updatedPerson = new Person(
                 2L,
