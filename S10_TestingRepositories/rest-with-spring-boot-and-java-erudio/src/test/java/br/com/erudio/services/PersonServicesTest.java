@@ -1,6 +1,7 @@
 package br.com.erudio.services;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.BDDMockito.given;
 
 import java.util.Optional;
@@ -13,6 +14,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import br.com.erudio.exceptions.ResourceNotFoundException;
 import br.com.erudio.model.Person;
 import br.com.erudio.repositories.PersonRepository;
 
@@ -60,5 +62,25 @@ public class PersonServicesTest {
         System.out.println(savedPerson);
         // then - verify the output
         assertNotNull(savedPerson);
+    }
+    
+ // JUnit test for savePerson method
+    @DisplayName("JUnit test for savePerson method which throws exception")
+    @Test
+    public void givenExistingEmail_whenSavePerson_thenThrowsException(){
+        // given - precondition or setup
+        given(repository.findByEmail(person.getEmail()))
+                .willReturn(Optional.of(person));
+
+        System.out.println(repository);
+        System.out.println(service);
+
+        // when -  action or the behavior that we are going test
+        assertThrows(ResourceNotFoundException.class, () -> {
+            service.create(person);
+        });
+
+        // then
+        verify(repository, never()).save(any(Person.class));
     }
 }
