@@ -131,10 +131,10 @@ public class PersonServiceTests {
         assertEquals(0, personList.size());
     }
 
-    // JUnit test for getPersonById method
-    @DisplayName("JUnit test for getPersonById method")
+    // JUnit test for findById method
+    @DisplayName("JUnit test for findById method")
     @Test
-    public void givenPersonId_whenGetPersonById_thenReturnPersonObject(){
+    public void givenPersonId_whenFindById_thenReturnPersonObject(){
         // given
         given(repository.findById(1L)).willReturn(Optional.of(person));
 
