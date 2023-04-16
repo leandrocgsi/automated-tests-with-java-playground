@@ -46,12 +46,12 @@ public class PersonControllerTests {
 
         // given - precondition or setup
         Person person = new Person(
-        		"Leandro",
-        		"Costa",
-        		"leandro@erudio.com.br",
-        		"Uberlândia - Minas Gerais - Brasil",
-        		"Male"
-    		);
+                "Leandro",
+                "Costa",
+                "leandro@erudio.com.br",
+                "Uberlândia - Minas Gerais - Brasil",
+                "Male"
+            );
         given(service.create(any(Person.class)))
                 .willAnswer((invocation)-> invocation.getArgument(0));
 
@@ -78,21 +78,21 @@ public class PersonControllerTests {
         // given - precondition or setup
         List<Person> listOfPersons = new ArrayList<>();
         listOfPersons.add(new Person(
-        		1L,
-        		"Leandro",
-        		"Costa",
-        		"leandro@erudio.com.br",
-        		"Uberlândia - Minas Gerais - Brasil",
-        		"Male"
-    		));
+                1L,
+                "Leandro",
+                "Costa",
+                "leandro@erudio.com.br",
+                "Uberlândia - Minas Gerais - Brasil",
+                "Male"
+            ));
         listOfPersons.add(new Person(
-        		2L,
-        		"Ayrton",
-        		"Senna",
-        		"sena@erudio.com.br",
-        		"Some Place in Brasil",
-        		"Male"
-        		));
+                2L,
+                "Leonardo",
+                "Costa",
+                "leonardo@erudio.com.br",
+                "Some Place in Brasil",
+                "Male"
+                ));
         given(service.findAll()).willReturn(listOfPersons);
 
         // when -  action or the behavior that we are going test
@@ -113,13 +113,13 @@ public class PersonControllerTests {
         // given - precondition or setup
         long personId = 1L;
         var person = new Person(
-        		1L,
-        		"Leandro",
-        		"Costa",
-        		"leandro@erudio.com.br",
-        		"Uberlândia - Minas Gerais - Brasil",
-        		"Male"
-    		);
+                1L,
+                "Leandro",
+                "Costa",
+                "leandro@erudio.com.br",
+                "Uberlândia - Minas Gerais - Brasil",
+                "Male"
+            );
         given(service.findById(personId)).willReturn(Optional.of(person));
 
         // when -  action or the behavior that we are going test
@@ -158,22 +158,22 @@ public class PersonControllerTests {
         // given - precondition or setup
         long personId = 1L;
         Person savedPerson = new Person(
-        		1L,
-        		"Leandro",
-        		"Costa",
-        		"leandro@erudio.com.br",
-        		"Uberlândia - Minas Gerais - Brasil",
-        		"Male"
-    		);
+                1L,
+                "Leandro",
+                "Costa",
+                "leandro@erudio.com.br",
+                "Uberlândia - Minas Gerais - Brasil",
+                "Male"
+            );
 
         Person updatedPerson = new Person(
-        		2L,
-        		"Ayrton",
-        		"Senna",
-        		"sena@erudio.com.br",
-        		"Some Place in Brasil",
-        		"Male"
-    		);
+                2L,
+                "Leonardo",
+                "Costa",
+                "leonardo@erudio.com.br",
+                "Some Place in Brasil",
+                "Male"
+            );
         given(service.findById(personId)).willReturn(Optional.of(savedPerson));
         given(service.update(any(Person.class)))
                 .willAnswer((invocation)-> invocation.getArgument(0));
@@ -198,20 +198,20 @@ public class PersonControllerTests {
         // given - precondition or setup
         long personId = 1L;
         Person savedPerson = new Person(
-        		"Leandro",
-        		"Costa",
-        		"leandro@erudio.com.br",
-        		"Uberlândia - Minas Gerais - Brasil",
-        		"Male"
-    		);
+                "Leandro",
+                "Costa",
+                "leandro@erudio.com.br",
+                "Uberlândia - Minas Gerais - Brasil",
+                "Male"
+            );
         
         Person updatedPerson = new Person(
-        		"Ayrton",
-        		"Senna",
-        		"sena@erudio.com.br",
-        		"Some Place in Brasil",
-        		"Male"
-    		);
+                "Leonardo",
+                "Costa",
+                "leonardo@erudio.com.br",
+                "Some Place in Brasil",
+                "Male"
+            );
         //given(service.findById(personId)).willReturn(Optional.empty());
         given(service.findById(personId)).willReturn(Optional.of(savedPerson));
         //when(service.findById(anyLong())).thenThrow(new ResourceNotFoundException("No records found for this ID!"));
