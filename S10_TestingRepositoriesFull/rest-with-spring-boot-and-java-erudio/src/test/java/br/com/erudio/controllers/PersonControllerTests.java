@@ -184,13 +184,7 @@ public class PersonControllerTests {
     public void givenUpdatedPerson_whenUpdatePerson_thenReturn404() throws Exception{
         // given - precondition or setup
         long personId = 1L;
-        Person savedPerson = new Person(
-                "Leandro",
-                "Costa",
-                "leandro@erudio.com.br",
-                "Uberlândia - Minas Gerais - Brasil",
-                "Male"
-            );
+        Person savedPerson = person;
         
         Person updatedPerson = new Person(
                 "Leonardo",
