@@ -90,7 +90,7 @@ public class PersonControllerTests {
                 "Leonardo",
                 "Costa",
                 "leonardo@erudio.com.br",
-                "Some Place in Brasil",
+                "Uberlândia - Minas Gerais - Brasil",
                 "Male"
                 ));
         given(service.findAll()).willReturn(listOfPersons);
@@ -171,7 +171,7 @@ public class PersonControllerTests {
                 "Leonardo",
                 "Costa",
                 "leonardo@erudio.com.br",
-                "Some Place in Brasil",
+                "Uberlândia - Minas Gerais - Brasil",
                 "Male"
             );
         given(service.findById(personId)).willReturn(Optional.of(savedPerson));
@@ -209,7 +209,7 @@ public class PersonControllerTests {
                 "Leonardo",
                 "Costa",
                 "leonardo@erudio.com.br",
-                "Some Place in Brasil",
+                "Uberlândia - Minas Gerais - Brasil",
                 "Male"
             );
         //given(service.findById(personId)).willReturn(Optional.empty());
