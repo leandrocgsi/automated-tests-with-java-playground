@@ -99,7 +99,7 @@ public class PersonServiceTests {
         // given - precondition or setup
 
         Person person1 = new Person(
-        		"Leonardo",
+                "Leonardo",
                 "Costa",
                 "leonardo@erudio.com.br",
                 "Uberlândia - Minas Gerais - Brasil",

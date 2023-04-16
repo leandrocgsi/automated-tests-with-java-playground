@@ -3,11 +3,13 @@ package br.com.erudio.services;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -111,5 +113,20 @@ public class PersonServicesTest {
         // then - verify the output
         assertNotNull(personList);
         assertEquals(2, personList.size());
+    }
+    
+    // JUnit test for getAllPersons method
+    @DisplayName("JUnit test for getAllPersons method (negative scenario)")
+    @Test
+    public void givenEmptyPersonsList_whenGetAllPersons_thenReturnEmptyPersonsList(){
+        // given - precondition or setup
+        given(repository.findAll()).willReturn(Collections.emptyList());
+
+        // when -  action or the behavior that we are going test
+        List<Person> personList = service.findAll();
+
+        // then - verify the output
+        assertTrue(personList.isEmpty());
+        assertEquals(0, personList.size());
     }
 }
