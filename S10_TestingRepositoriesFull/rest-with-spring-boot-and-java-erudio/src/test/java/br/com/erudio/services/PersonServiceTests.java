@@ -1,6 +1,6 @@
 package br.com.erudio.services;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.willDoNothing;
@@ -40,13 +40,13 @@ public class PersonServiceTests {
         //personRepository = Mockito.mock(PersonRepository.class);
         //personService = new PersonServiceImpl(personRepository);
         person = new Person(
-        		1L,
-        		"Leandro",
-        		"Costa",
-        		"leandro@erudio.com.br",
-        		"Uberlândia - Minas Gerais - Brasil",
-        		"Male"
-    		);
+                1L,
+                "Leandro",
+                "Costa",
+                "leandro@erudio.com.br",
+                "Uberlândia - Minas Gerais - Brasil",
+                "Male"
+            );
     }
 
     // JUnit test for savePerson method
@@ -97,12 +97,12 @@ public class PersonServiceTests {
         // given - precondition or setup
 
         Person person1 = new Person(
-        		"Ayrton",
-        		"Senna",
-        		"senna@erudio.com.br",
-        		"Some Place in Brasil",
-        		"Male"
-    		);
+                "Ayrton",
+                "Senna",
+                "senna@erudio.com.br",
+                "Some Place in Brasil",
+                "Male"
+            );
 
         given(repository.findAll()).willReturn(List.of(person,person1));
 
@@ -121,12 +121,12 @@ public class PersonServiceTests {
         // given - precondition or setup
 
         Person person1 = new Person(
-        		"Ayrton",
-        		"Senna",
-        		"senna@erudio.com.br",
-        		"Some Place in Brasil",
-        		"Male"
-    		);
+                "Ayrton",
+                "Senna",
+                "senna@erudio.com.br",
+                "Some Place in Brasil",
+                "Male"
+            );
 
         given(repository.findAll()).willReturn(Collections.emptyList());
 
@@ -160,16 +160,16 @@ public class PersonServiceTests {
         // given - precondition or setup
         given(repository.findById(1L)).willReturn(Optional.of(person));
         
-    	person.setEmail("rstallman@erudio.com.br");
-    	person.setFirstName("Richard");
-    	
+        person.setEmail("rstallman@erudio.com.br");
+        person.setFirstName("Richard");
+        
         given(repository.save(person)).willReturn(person);
         // when -  action or the behavior that we are going test
         Person updatedPerson = service.update(person);
 
         // then - verify the output
-        assertThat(updatedPerson.getEmail()).isEqualTo("rstallman@erudio.com.br");
-        assertThat(updatedPerson.getFirstName()).isEqualTo("Richard");
+        assertEquals("rstallman@erudio.com.br", updatedPerson.getEmail());
+        assertEquals("Richard", updatedPerson.getFirstName());
     }
 
     // JUnit test for deletePerson method
