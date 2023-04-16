@@ -1,5 +1,6 @@
 package br.com.erudio.services;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
@@ -7,6 +8,7 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -67,7 +69,7 @@ public class PersonServicesTest {
         assertNotNull(savedPerson);
     }
     
- // JUnit test for savePerson method
+    // JUnit test for savePerson method
     @DisplayName("JUnit test for savePerson method which throws exception")
     @Test
     public void givenExistingEmail_whenSavePerson_thenThrowsException(){
@@ -85,5 +87,29 @@ public class PersonServicesTest {
 
         // then
         verify(repository, never()).save(any(Person.class));
+    }
+    
+    // JUnit test for getAllPersons method
+    @DisplayName("JUnit test for getAllPersons method")
+    @Test
+    public void givenPersonsList_whenGetAllPersons_thenReturnPersonsList(){
+        // given - precondition or setup
+
+        Person person1 = new Person(
+                "Leonardo",
+                "Costa",
+                "leonardo@erudio.com.br",
+                "Uberlândia - Minas Gerais - Brasil",
+                "Male"
+            );
+
+        given(repository.findAll()).willReturn(List.of(person,person1));
+
+        // when -  action or the behavior that we are going test
+        List<Person> personList = service.findAll();
+
+        // then - verify the output
+        assertNotNull(personList);
+        assertEquals(2, personList.size());
     }
 }
