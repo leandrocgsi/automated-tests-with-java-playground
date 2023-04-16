@@ -1,6 +1,8 @@
 package br.com.erudio.services;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.willDoNothing;
@@ -67,7 +69,7 @@ public class PersonServiceTests {
 
         System.out.println(savedPerson);
         // then - verify the output
-        assertThat(savedPerson).isNotNull();
+        assertNotNull(savedPerson);
     }
 
     // JUnit test for savePerson method
@@ -110,8 +112,8 @@ public class PersonServiceTests {
         List<Person> personList = service.findAll();
 
         // then - verify the output
-        assertThat(personList).isNotNull();
-        assertThat(personList.size()).isEqualTo(2);
+        assertNotNull(personList);
+        assertEquals(2, personList.size());
     }
 
     // JUnit test for getAllPersons method
@@ -134,8 +136,8 @@ public class PersonServiceTests {
         List<Person> personList = service.findAll();
 
         // then - verify the output
-        assertThat(personList).isEmpty();
-        assertThat(personList.size()).isEqualTo(0);
+        assertTrue(personList.isEmpty());
+        assertEquals(0, personList.size());
     }
 
     // JUnit test for getPersonById method
