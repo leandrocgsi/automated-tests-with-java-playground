@@ -129,4 +129,23 @@ public class PersonServicesTest {
         assertTrue(personList.isEmpty());
         assertEquals(0, personList.size());
     }
+    
+    // JUnit test for updatePerson method
+    @DisplayName("JUnit test for updatePerson method")
+    @Test
+    public void givenPersonObject_whenUpdatePerson_thenReturnUpdatedPerson(){
+        // given - precondition or setup
+        given(repository.findById(1L)).willReturn(Optional.of(person));
+        
+        person.setEmail("leonardo@erudio.com.br");
+        person.setFirstName("Leonardo");
+        
+        given(repository.save(person)).willReturn(person);
+        // when -  action or the behavior that we are going test
+        Person updatedPerson = service.update(person);
+
+        // then - verify the output
+        assertEquals("leonardo@erudio.com.br", updatedPerson.getEmail());
+        assertEquals("Leonardo", updatedPerson.getFirstName());
+    }
 }
