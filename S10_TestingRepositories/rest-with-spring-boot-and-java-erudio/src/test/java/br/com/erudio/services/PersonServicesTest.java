@@ -6,7 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.BDDMockito.willDoNothing;
 import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 import java.util.Collections;
@@ -147,5 +149,23 @@ public class PersonServicesTest {
         // then - verify the output
         assertEquals("leonardo@erudio.com.br", updatedPerson.getEmail());
         assertEquals("Leonardo", updatedPerson.getFirstName());
+    }
+    
+    // JUnit test for deletePerson method
+    @DisplayName("JUnit test for deletePerson method")
+    @Test
+    public void givenPersonId_whenDeletePerson_thenNothing(){
+        // given - precondition or setup
+        long id = 1L;
+
+
+        given(repository.findById(1L)).willReturn(Optional.of(person));
+        willDoNothing().given(repository).delete(person);
+
+        // when -  action or the behavior that we are going test
+        service.delete(id);
+
+        // then - verify the output
+        verify(repository, times(1)).delete(person);
     }
 }
