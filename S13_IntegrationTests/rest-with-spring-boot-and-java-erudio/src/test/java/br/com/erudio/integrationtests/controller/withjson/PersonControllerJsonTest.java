@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -175,7 +176,7 @@ public class PersonControllerJsonTest extends AbstractIntegrationTest {
                         .body()
                             .asString();
         
-        List<Person> people = objectMapper.readValue(content, List.class);
+        List<Person> people = Arrays.asList(objectMapper.readValue(content,  Person[].class));
         
         Person foundPersonOne = people.get(0);
         
