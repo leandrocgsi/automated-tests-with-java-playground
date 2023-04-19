@@ -38,3 +38,5 @@ C:\Program Files\Git\mingw64\etc
 	helper = manager
 [alias]
     acmp = "!f() { git add -A && git commit -m \"$@\" && git push; }; f"
+    acm = "!f() { git add -A && git commit -m \"$@\"; }; f"
+
