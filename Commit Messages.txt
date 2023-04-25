@@ -39,4 +39,3 @@ C:\Program Files\Git\mingw64\etc
 [alias]
     acmp = "!f() { git add -A && git commit -m \"$@\" && git push; }; f"
     acm = "!f() { git add -A && git commit -m \"$@\"; }; f"
-
