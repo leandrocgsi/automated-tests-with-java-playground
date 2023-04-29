@@ -42,7 +42,7 @@ class PersonRepositoryTest {
                 "Uberlândia - Minas Gerais - Brasil",
                 "Male"
             );
-        // when - action or the behaviour that we are going test
+        // when - action or the behavior that we are going test
         Person savedPerson = personRepository.save(person);
 
         // then - verify the output
