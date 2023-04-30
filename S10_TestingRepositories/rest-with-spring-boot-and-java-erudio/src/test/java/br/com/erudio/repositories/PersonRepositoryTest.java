@@ -35,13 +35,14 @@ class PersonRepositoryTest {
     public void givenPersonObject_whenSave_thenReturnSavedPerson(){
 
         //given - precondition or setup
-        Person person = new Person(
-                "Leandro",
+        /*
+            "Leandro",
                 "Costa",
                 "leandro@erudio.com.br",
                 "Uberlândia - Minas Gerais - Brasil",
                 "Male"
             );
+        */
         // when - action or the behavior that we are going test
         Person savedPerson = personRepository.save(person);
 
