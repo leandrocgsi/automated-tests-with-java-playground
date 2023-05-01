@@ -1,7 +1,6 @@
 package br.com.erudio.repositories;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -47,8 +46,8 @@ class PersonRepositoryTest {
         Person savedPerson = personRepository.save(person);
 
         // then - verify the output
-        assertThat(savedPerson).isNotNull();
-        assertThat(savedPerson.getId()).isGreaterThan(0);
+        assertNotNull(savedPerson);
+        assertTrue(savedPerson.getId() > 0);
     }
 
 }
