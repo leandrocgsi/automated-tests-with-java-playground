@@ -1,5 +1,3 @@
-# Java Unit Testing com Spring Boot 3, Junit 5 e Mockito
-
 # [Java Unit Testing com Spring Boot 3, Junit 5 e Mockito](https://www.udemy.com/course/restful-apis-do-0-a-nuvem-com-springboot-e-docker/?couponCode=GTHB_FLASH_SALE2021)
 ### [Domine Testes Unitários e de Integração para APPs Java e Spring Boot 3 com JUnit 5, Mockito, TestContainers, TDD e +++++](https://www.udemy.com/course/restful-apis-do-0-a-nuvem-com-springboot-e-docker/?couponCode=GTHB_FLASH_SALE2021)
 
