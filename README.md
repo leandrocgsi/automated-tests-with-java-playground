@@ -1,6 +1,6 @@
-# Automated Tests with Java Playground
+# Java Unit Testing com Spring Boot 3, Junit 5 e Mockito
 
-# [REST API's RESTFul do 0 à AWS com Spring Boot 3, Java e Docker](https://www.udemy.com/course/restful-apis-do-0-a-nuvem-com-springboot-e-docker/?couponCode=GTHB_FLASH_SALE2021)
+# [Java Unit Testing com Spring Boot 3, Junit 5 e Mockito](https://www.udemy.com/course/restful-apis-do-0-a-nuvem-com-springboot-e-docker/?couponCode=GTHB_FLASH_SALE2021)
 ### [Desenvolva uma API REST do zero absoluto atendendo todos os níveis de maturidade RESTful e implante na AWS + React JS](https://www.udemy.com/course/restful-apis-do-0-a-nuvem-com-springboot-e-docker/?couponCode=GTHB_FLASH_SALE2021)
 
 [![Continuous Integration with Github Actions](https://github.com/leandrocgsi/rest-with-spring-boot-and-java-erudio/actions/workflows/continuous-integration.yml/badge.svg)](https://github.com/leandrocgsi/rest-with-spring-boot-and-java-erudio/actions/workflows/continuous-integration.yml)
